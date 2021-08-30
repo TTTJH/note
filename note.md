@@ -3,3 +3,8 @@
 * (递归):return的东西原路返回了。
 * (CommonJS):暴露是module.exports 注意有个"s"
 * (CommonJS):CommonJS的导入方式是同步的
+* (browserify):用来将commonjs方式require的包导入至代码上端
+* (babel):用来将ES6代码转为ES5代码
+* (node_modules):可执行文件在/node_modules/.bin目录下
+* (CommonJS):CommonJS借助browserify工具实现require（browserify index.js -o bundle.js）
+* (ES6 Module):es6-module借助babel进行es6->es5(babel ./src --out-dir ./lib),然后借助browserify实现require(browserify index.js -o bundle.js)
