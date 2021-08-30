@@ -13,3 +13,6 @@
 * (gitk)一个git提交记录查看命令工具
 * (代码健壮)对数组的判断:Array.isArray(data) && data.length || []
 * (shell)接受参数：$0,$1
+* (Generator生成器):*号声明的函数第一次执行产生生成器，后续通过next()进行逐步调用
+* (call和apply):注意call和apply的调用者是被修改this指向的对象，call和apply的第一个参数是新的this，第二个开始参数是新this需要的参数
+
