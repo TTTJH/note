@@ -15,4 +15,6 @@
 * (shell)接受参数：$0,$1
 * (Generator生成器):*号声明的函数第一次执行产生生成器，后续通过next()进行逐步调用
 * (call和apply):注意call和apply的调用者是被修改this指向的对象，call和apply的第一个参数是新的this，第二个开始参数是新this需要的参数
-
+* (Generator生成器):next()方法中参数可以设置上一个yield的返回值
+* (深拷贝浅拷贝):解构赋值是深拷贝，不要被结构赋值对象里面的基本数据类型和引用输入类型搞混
+* (sass):注意sass待转换文件必须是xxx.sass文件(捂脸.gif)
