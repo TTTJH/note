@@ -8,3 +8,6 @@
 * (node_modules):可执行文件在/node_modules/.bin目录下
 * (CommonJS):CommonJS借助browserify工具实现require（browserify index.js -o bundle.js）
 * (ES6 Module):es6-module借助babel进行es6->es5(babel ./src --out-dir ./lib),然后借助browserify实现require(browserify index.js -o bundle.js)
+* (工作)困了的话就戴耳机听歌
+* (git)终端查看git提交记录 git log --graph
+* (gitk)一个git提交记录查看命令工具
