@@ -12,3 +12,4 @@
 * (git)终端查看git提交记录 git log --graph
 * (gitk)一个git提交记录查看命令工具
 * (代码健壮)对数组的判断:Array.isArray(data) && data.length || []
+* (shell)接受参数：$0,$1
