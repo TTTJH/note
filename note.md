@@ -11,3 +11,4 @@
 * (工作)困了的话就戴耳机听歌
 * (git)终端查看git提交记录 git log --graph
 * (gitk)一个git提交记录查看命令工具
+* (代码健壮)对数组的判断:Array.isArray(data) && data.length || []
