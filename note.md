@@ -22,3 +22,4 @@
 * (sass):  :global用来覆盖UI库样式
 * (闭包):闭包一定要有return吗？
 * (call和apply)：注意call和apply修改了某函数的this执行并且立即执行，bind需要手动再执行
+* (框架):框架中data的更新与UI层的渲染，注意复杂数据类型更新UI层无感的情况，注意key的使用
