@@ -23,3 +23,6 @@
 * (闭包):闭包一定要有return吗？
 * (call和apply)：注意call和apply修改了某函数的this执行并且立即执行，bind需要手动再执行
 * (框架):框架中data的更新与UI层的渲染，注意复杂数据类型更新UI层无感的情况，注意key的使用
+* (Object.prototype.toString):判断类型，Object.prototype.toString()永远的神。let ts = Object.prototype.toString() ts.call(待判断对象)
+* (无穷大与无穷小):Infinity和-Infinity
+* (引用数据类型)：注意引用数据类型之间的赋值问题。（写leetcode的回文字符串时候数组的赋值。应该用深拷贝而不是直接赋值）
