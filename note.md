@@ -20,3 +20,5 @@
 * (sass):注意sass待转换文件必须是xxx.sass文件(捂脸.gif)
 * (sass):sass的几个关键点:嵌套、变量、混合器、继承、导入
 * (sass):  :global用来覆盖UI库样式
+* (闭包):闭包一定要有return吗？
+* (call和apply)：注意call和apply修改了某函数的this执行并且立即执行，bind需要手动再执行
