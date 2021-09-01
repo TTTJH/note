@@ -26,3 +26,4 @@
 * (Object.prototype.toString):判断类型，Object.prototype.toString()永远的神。let ts = Object.prototype.toString() ts.call(待判断对象)
 * (无穷大与无穷小):Infinity和-Infinity
 * (引用数据类型)：注意引用数据类型之间的赋值问题。（写leetcode的回文字符串时候数组的赋值。应该用深拷贝而不是直接赋值）
+* (异步):异步处理的发展:回调函数 --> promise --> Generator --> async await --> RXJS
