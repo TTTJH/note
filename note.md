@@ -27,3 +27,6 @@
 * (无穷大与无穷小):Infinity和-Infinity
 * (引用数据类型)：注意引用数据类型之间的赋值问题。（写leetcode的回文字符串时候数组的赋值。应该用深拷贝而不是直接赋值）
 * (异步):异步处理的发展:回调函数 --> promise --> Generator --> async await --> RXJS
+* (函数):函数语句和函数表达式。函数语句存在提升的情况。
+* (迭代)：基于函数的迭代比基于循环的迭代要慢一些。
+* (dom):createDocumentFragment()作为子dom添加进父dom时，只会将documentFragment其所有的子孙节点添加给父dom，不包括docuemntFragment其自身。
