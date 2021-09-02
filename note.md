@@ -30,3 +30,5 @@
 * (函数):函数语句和函数表达式。函数语句存在提升的情况。
 * (迭代)：基于函数的迭代比基于循环的迭代要慢一些。
 * (dom):createDocumentFragment()作为子dom添加进父dom时，只会将documentFragment其所有的子孙节点添加给父dom，不包括docuemntFragment其自身。
+* (虚拟DOM算法)：并不是虚拟DOM就比真实DOM操作要快,而是用虚拟DOM算法去操作真实DOM，比直接操作真实DOM性能更高。
+* (虚拟DOM算法):虚拟DOM算法 = 虚拟DOM + DIFF算法
