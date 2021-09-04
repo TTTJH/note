@@ -32,3 +32,5 @@
 * (dom):createDocumentFragment()作为子dom添加进父dom时，只会将documentFragment其所有的子孙节点添加给父dom，不包括docuemntFragment其自身。
 * (虚拟DOM算法)：并不是虚拟DOM就比真实DOM操作要快,而是用虚拟DOM算法去操作真实DOM，比直接操作真实DOM性能更高。
 * (虚拟DOM算法):虚拟DOM算法 = 虚拟DOM + DIFF算法
+* (Math.random()):获取min和max之间的随机数：(Math.random() * (max - min)) + min
+* (Math.random()):获取min和max之间的整数(包括max和min)：Math.floor((Math.random() * (max - min + 1))) + min
