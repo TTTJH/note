@@ -34,3 +34,5 @@
 * (虚拟DOM算法):虚拟DOM算法 = 虚拟DOM + DIFF算法
 * (Math.random()):获取min和max之间的随机数：(Math.random() * (max - min)) + min
 * (Math.random()):获取min和max之间的整数(包括max和min)：Math.floor((Math.random() * (max - min + 1))) + min
+* (箭头函数):箭头函数后的函数体不带花括号即默认return
+* (CSS选择器):选择除第一个元素后的其他元素:p:not(:nth-child(1)){color:pink}
