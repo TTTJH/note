@@ -36,3 +36,6 @@
 * (Math.random()):获取min和max之间的整数(包括max和min)：Math.floor((Math.random() * (max - min + 1))) + min
 * (箭头函数):箭头函数后的函数体不带花括号即默认return
 * (CSS选择器):选择除第一个元素后的其他元素:p:not(:nth-child(1)){color:pink}
+* (some 和 every)：some中当return了一个true,就不再循环。every中return了一个false,就不再循环。
+* (React 源码):render方法实际上是调用了React.createElement方法(ReactElement方法)
+* (避免操作state):避免操作结构赋值取得的state的方法目前是：{...state.xxx,newKey:newValue},用扩展运算符扩出新的对象。或者JSON.paurse(JSON.stringify(state.xxx))深拷贝
