@@ -39,3 +39,5 @@
 * (some 和 every)：some中当return了一个true,就不再循环。every中return了一个false,就不再循环。
 * (React 源码):render方法实际上是调用了React.createElement方法(ReactElement方法)
 * (避免操作state):避免操作结构赋值取得的state的方法目前是：{...state.xxx,newKey:newValue},用扩展运算符扩出新的对象。或者JSON.paurse(JSON.stringify(state.xxx))深拷贝
+* (浅拷贝的坑)：不要忘记浅拷贝的坑，类似moment对象的使用
+* (some和every)：之前记住的some返回一个true就停止循环，every返回一个false就停止循环，注重的是循环的过程。some只要数组中某一元素满足条件即返回true,every需要数组中所有元素满足条件才返回ture,强调的是返回值。
