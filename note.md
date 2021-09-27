@@ -41,3 +41,8 @@
 * (避免操作state):避免操作结构赋值取得的state的方法目前是：{...state.xxx,newKey:newValue},用扩展运算符扩出新的对象。或者JSON.paurse(JSON.stringify(state.xxx))深拷贝
 * (浅拷贝的坑)：不要忘记浅拷贝的坑，类似moment对象的使用
 * (some和every)：之前记住的some返回一个true就停止循环，every返回一个false就停止循环，注重的是循环的过程。some只要数组中某一元素满足条件即返回true,every需要数组中所有元素满足条件才返回ture,强调的是返回值。
+* (好看的webstorm字体)：Raleway                                        │~                                                                     
+* （元素的宽高）:元素的宽等于 width + border*2 + padding*2             │~                                                                     
+* (content-box)：width就是width,border就是border,padding就是padding    │~                                                                     
+* (border-box)：width+2*border+2*padding == 设置的width，width会被borde│~                                                                     
+r和padding挤压。
