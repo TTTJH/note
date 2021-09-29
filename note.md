@@ -46,3 +46,7 @@
 * (content-box)：width就是width,border就是border,padding就是padding    │~                                                                     
 * (border-box)：width+2*border+2*padding == 设置的width，width会被borde│~                                                                     
 r和padding挤压。
+* (事件委托):事件委托就是将元素的事件委托给他的父级元素或更外级的元素处理，实现机制就是事件冒泡。
+* (addEveneListener):addEventListener有三个参数(event,function.useCapture),第三个参数决定事件处理函数在哪个阶段被调用(冒泡阶段 和 捕获阶段)
+* (阻止事件冒泡): 子元素设置：event.stopPropagation() 或者直接 return false
+* (事件委托):为父元素绑定某事件之后，通过event.target.nodeName.toLowerCase()==="li" 的方法判断被点击元素的tagName
