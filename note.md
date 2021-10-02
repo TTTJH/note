@@ -50,3 +50,8 @@ r和padding挤压。
 * (addEveneListener):addEventListener有三个参数(event,function.useCapture),第三个参数决定事件处理函数在哪个阶段被调用(冒泡阶段 和 捕获阶段)
 * (阻止事件冒泡): 子元素设置：event.stopPropagation() 或者直接 return false
 * (事件委托):为父元素绑定某事件之后，通过event.target.nodeName.toLowerCase()==="li" 的方法判断被点击元素的tagName
+* (系统盘制作软件):balenaEtcher和rufus
+* （虚拟机软件）:qemu
+* (较有用的apt命令):apt -f install ; apt --fix-broken install ; apt autoremove
+* (高阶函数):高阶函数的说法来自于函数式编程，函数作为参数进行传递，类似map、reduce、filter这都是高阶函数，因为他们传递就是函数参数。
+
