@@ -54,4 +54,9 @@ r和padding挤压。
 * （虚拟机软件）:qemu
 * (较有用的apt命令):apt -f install ; apt --fix-broken install ; apt autoremove
 * (高阶函数):高阶函数的说法来自于函数式编程，函数作为参数进行传递，类似map、reduce、filter这都是高阶函数，因为他们传递就是函数参数。
-
+* (函数式编程)：函数式编程把一切变成关注点为 输入 和 输出
+* (学习渠道): youtube视频、掘金、leetcode
+* (git):git几个方面 ：完美的commit、分支策略、pull request、
+* (vim快捷键)：格式化代码: gg = G
+* (字符串方法): split() 通过括号内符号对字符串进行数组化分割，若传递""则挨个数组化
+* (变量初始化):变量使用时是什么类型，初始化时就采取什么类型。
