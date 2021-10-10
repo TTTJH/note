@@ -25,7 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="" />
+    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/note.md" beforeDir="false" afterPath="$PROJECT_DIR$/note.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +69,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -81,6 +84,7 @@
       <updated>1630309119359</updated>
       <workItem from="1630309120490" duration="24000" />
       <workItem from="1630319217240" duration="438000" />
+      <workItem from="1633841652658" duration="29000" />
     </task>
     <servers />
   </component>
