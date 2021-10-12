@@ -63,3 +63,72 @@ r和padding挤压。
 * (说给自己听的):敲代码就像是在用铁镐敲击大岩石块，凿一下凿一下的破开它。
 * (快速生成数组):new Array(个数).fill("")
 * (WSL2):这是个酷毙了的东西。😀😀😍😍
+  * (递归):
+      ``` javascript
+               // 递归为树状数组添加层级标识
+          let arr = [
+          {
+              title:"test"
+          },
+          {
+              title:"test",
+              children:[
+                  {title:"test2"},
+                  {title:"test2"},
+              ]
+          },
+          {
+              title:"test",
+              children:[
+                  {
+                      title:"test2",
+                  },
+                  {
+                      title:"test2",
+                      children:[
+                          {title:"test3"},
+                          {title:"test3"},
+                      ]
+                  },
+              ]
+          },
+      ]
+      function setLevel(arr){
+    
+          // 私有函数
+          function setLevelFun(arr,level){
+              level++;
+              arr.map(item => {
+                  item.level = level;
+                  if(item.children){
+                      setLevelFun(item.children,level);
+                  }
+              })
+          }
+    
+          setLevelFun(arr,0)
+      }
+      setLevel(arr);
+      ```
+* (linux):大胆的去看软件里面的配置文件。
+* (Linux PATH)：~/.profile文件 和 /usr/local/bin目录(软链接) 
+* (work):要持续的联系测试人员，不能停滞。
+* (中序遍历):中序遍历是从小到大依次遍历。
+	```javascript
+		function middleConsole(callback){
+			// ---- 私有函数 -----
+			function middleConsoleFun(node,callback){
+				if(node !== null){
+					middleConsoleFun(node.left,callback);
+					callback(node);
+					middleConsoleFun(node.right,callback);
+				}	
+			}
+
+			middleConsoleFun(root,callback());
+		}
+	```
+* (先序遍历):先序遍历是中间节点优先于子孙节点被遍历
+* (后序遍历)：后序遍历是中间节点落后于子孙节点被遍历
+		
+

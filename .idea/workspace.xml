@@ -25,9 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/note.md" beforeDir="false" afterPath="$PROJECT_DIR$/note.md" afterDir="false" />
-    </list>
+    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="update:一次通过WSL2下的测试提交。" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +33,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -84,8 +83,16 @@
       <updated>1630309119359</updated>
       <workItem from="1630309120490" duration="24000" />
       <workItem from="1630319217240" duration="438000" />
-      <workItem from="1633841652658" duration="29000" />
+      <workItem from="1633841652658" duration="166000" />
     </task>
+    <task id="LOCAL-00001" summary="update:一次通过WSL2下的测试提交。">
+      <created>1633841781721</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1633841781721</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,5 +121,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update:一次通过WSL2下的测试提交。" />
+    <option name="LAST_COMMIT_MESSAGE" value="update:一次通过WSL2下的测试提交。" />
   </component>
 </project>
