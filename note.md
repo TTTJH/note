@@ -134,3 +134,95 @@ r和padding挤压。
 	* 中序遍历：在三个节点中，只要是中间节点，就是第二个被遍历的（node.left最先被遍历）
 	* 先序遍历；在三个节点中，只要是中间节点，就是最先被遍历的
 	* 后续遍历：在三个节点中，只要是中间节点，就是最后被遍历的。
+
+* (左右查询):<你不知道的js>第一章中的LHS和RHS
+	* LHS:操作的赋值目标是谁
+	* RHS:谁是赋值操作的源头
+* (右查询的意义)：如果RHS查询在所有的嵌套作用域中寻找不到所需要的变量，引擎就会抛出ReferenceError异常。
+* (异常):ReferenceError该异常同作用域判别失败相关。
+* (右查询和referenceError异常):
+	```javascript
+		console.log(a);
+		当RHS查询失败的时候，抛出ReferenceError.
+		因为无法找到 操作赋值的源头。
+
+		问题：为什么 a = 1 ,不会抛出ReferenceError
+			因为 a = 1,执行的是LHS左查询。如果找不到 被赋值操作的目标，那么就声明该变量继续赋值操作。
+	```
+* (var and let) : 可以这样理解，var 的最小作用域单位是函数作用域，let 的最小作用域单位是{}
+* (匿名函数和立即执行函数):注意匿名函数是匿名函数，立即执行函数是立即执行函数。
+* (全局变量):for循环的循环条件中使用var定义的i变量，是全局变量或者函数变量。
+* （let）：和上面相对于，for循环中使用let定义的i变量，只作用于该循环体作用域。
+* （提升）：声明会被提升，赋值留在原地。函数声明会被提升，函数表达式不会被提升。
+* (异常):TypeError:xxx is not a function 例子：undefined();  let a = 123;a.map(() => console.log("asdf"));
+* (提升与停留):
+	```javascript
+	// 总是记得变量的声明提升，但是却忽略赋值操作的原地停留。
+	test(); // TypeError  (is not a function)
+	myFun(); // ReferenceError (is not defined)
+	var test = function myFun(){
+		console.log(":)");
+	}
+	```
+* (var): 重复的无赋值的声明会被省略。
+	```javascript
+		var test = ":)";
+		var test;
+		console.log(test); // ":)"
+	```
+* (提升):函数声明的提升的最小作用域单位是 块级作用域 {}
+	```jvascript
+		fun(); // TypeError 
+		function fun(){
+			console.log(":)");
+		}
+	```
+* (闭包)：闭包的作用之一：从外部访问函数内部的变量
+	```javascript
+		function outter(){
+			let test = "被你发现啦！";
+			function inner(){
+				return test;
+			}
+			return inner;
+		}
+		const myFun = outter();
+		console.log(myFun()); // "被你发现啦！"
+	```
+* (闭包)：闭包强调的是外部函数的函数作用域未被回收。外部函数的函数作用域仍被内部函数给引用。
+* (闭包):闭包的作用之一： 闭包使得内部函数得以继续的使用其定义位置的词法作用域。
+* (闭包):经典的for循环问题
+	```javascript
+		for(var i=0;i<3;i++){
+			setTimeout(() => {console.log(i)},1000);
+		}
+		// ---- 代码的表面语义：每隔1s输出当前i的值；----
+		// ---- 实际执行结果：在一秒后直接输出3个3；----
+		// ---- 首先明确一点，for循环是同步代码，setTimeout是异步代码（event loop），----
+		// ---- 异步代码肯定在同步代码执行完毕之后执行（重点1） -----
+		// ---- 且var i 这样的写法使得在全局作用域中只有一个i（重点2） ----
+		// ---- 所以最终一次性输出3个3；
+		
+		// ---- 使用闭包解决这个问题（实现单独作用域） ----
+		    for(var i =0; i < 3;i++){
+        		(function(){
+            		  var j = i; // ---- 这个var的作用域为当前匿名函数作用域 ----
+            		  setTimeout(() => {
+                	  console.log(j);
+            		},1000);
+        	    })()
+		// ---- 简化版本 ----
+		    for(var i =0; i < 3;i++){
+        		(function(j){
+            		  setTimeout(() => {
+                	  console.log(j);
+            		  },1000);
+        		})(i)
+    		    }
+		// ---- 总结：虽然说使用闭包，但我觉得更像是利用了var的最小活动作用域是函数作用域这一特性 ----
+		// ---- 同理，那么我们可以利用let最小活动作用域是块作用域这一特性，直接劫持每一次循环产生的块作用域。
+		    for(let i =0; i < 3;i++){
+        		setTimeout(() => console.log(i),1000);
+    		    }
+    }
+	```

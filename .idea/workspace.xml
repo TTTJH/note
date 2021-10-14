@@ -25,7 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="update:一次通过WSL2下的测试提交。" />
+    <list default="true" id="749c5e6b-0fa9-46a8-a07a-b29d9d2d4b64" name="Default Changelist" comment="update:一次通过WSL2下的测试提交。">
+      <change beforePath="$PROJECT_DIR$/note.md" beforeDir="false" afterPath="$PROJECT_DIR$/note.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,6 +86,7 @@
       <workItem from="1630309120490" duration="24000" />
       <workItem from="1630319217240" duration="438000" />
       <workItem from="1633841652658" duration="166000" />
+      <workItem from="1634194698591" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="update:一次通过WSL2下的测试提交。">
       <created>1633841781721</created>
