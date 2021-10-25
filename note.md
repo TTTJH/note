@@ -226,3 +226,8 @@ r和padding挤压。
     		    }
     }
 	```
+* (while循环):break语句和return可以跳出while循环。
+* (翻墙):shadowsocks-libev永远的神。用apt下载,支持新方法
+* (工作)：项目上线到正式一定要去看
+* (linux):linux开启某个端口的命令 sudo ufw allow 8888 或者 sudo ufw allow from 192.168.1.0/24 to any port 8888
+* (React风格)：关于 子组件的state问题 子组件的state越多，组件耦合度越低，反之亦然。
