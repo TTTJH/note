@@ -242,3 +242,16 @@ r和padding挤压。
 * (对象)：为对象属性的属性值设置一个函数，该函数并不是属于该对象，而是被该对象某个属性给引用。
 * (Object.assgin):该方法实现对一个对象的拷贝。旧对象根据其属性数据类型，对修改新对象的属性做出不同反应。
 * (delete):当使用delete关键字删除对象某个函数或对象类型属性，且该对象属性是对该函数或对象的最后引用者，该函数或对象就可以被垃圾回收。
+* (writable和configurable):前者是的对象属性不可被重新赋值。后者另该对象不可被defineProperty
+* (defineProperty):如何定义一个对象常量属性？使用Object.defineProperty(obj,"key",{writable:false,configurable:false})
+* (对象配置):禁止扩展(preventExtensions)、密封(seal configurable:false)、冻结(freeze configurable:false,writable:false)。
+* (对象): 
+	``` 
+		let obj = {name:"tttjh"};
+		"name" in obj; // true; in关键字会检查原型链。
+		obj.hasOwnProperty("name"); //true; hasOwnProperty不会检查原型链
+	``` 
+* (对象属性的可枚举性):
+	* Object.keys() 返回一个数组，只包含该对象的可枚举属性。
+	* Object.getOwnPropertyNames() 也返回一个数组，包含该对象的任何属性，无论是否可枚举。
+* (const):const定义的应用数据类型，其属性可以改变(修改、增加、删除),但不可以为这个引用数据类型重新赋值。
