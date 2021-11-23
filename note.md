@@ -272,5 +272,53 @@ r和padding挤压。
 		* A组件需要得到B组件的ref,如果B组件是class组件，就直接获取其整个ref,如果B组件是函数组件，就获取其暴露的对应的方法。从而实现父组件调用子组件方法，修改子组件内部的值。
 * (写题)：写题的时候，可以对输入内容进行排序化、去重化处理。
 
-*(new关键字) ： new生成的对象，该对象的[[prototype]]会指向该函数的prototype
+* (new关键字) ： new生成的对象，该对象的[[prototype]]会指向该函数的prototype
 * (new关键字)：构造函数的实例的__proto__属性 指向其 构造函数的 prototype属性。所以，这就是原型链。🧔🧔🧔
+* (函数参数)：不应该在函数中直接修改函数的参数。
+* (Object) const anotherObj = Object.create(obj); anotherObj这个新生成的对象的__proto__会指向obj的(__proto__还是prototype)
+* (原型链)：学习原型链的时候，区分认识prototype和__proto__
+* (原型链)：
+	* 函数的prototype属性对象上，有一个不可枚举属性---constructor.
+	* controctor这个属性指向函数自身
+	* ```
+	function Fun(){};
+     	Fun.prototype.constructor == Fun; // true
+	// 由于原型链的存在所以
+	const fun = new Fun();
+	fun.conscructor === Fun; // 芜湖
+* (原型继承)：
+	```
+// ----- 原型继承 -----
+function Father(game){
+    this.game = game;
+}
+
+Father.prototype.getGame =function() {
+  return this.game;
+}
+
+function Son(name,sport){
+    Father.call(this,name); // ---- 继承 ------
+    this.sport = sport;
+}
+
+Son.prototype = Object.create(Father.prototype); // ---- 原型继承 -----
+
+const son = new Son("COD","NBA");
+
+console.log(son);
+
+console.log(son.getGame());
+	```
+* (结合原型链谈instanceof): instanceof用于判断一个对象是否是一个函数的构造函数式调用方式的产物，那他的判断依据是什么呢？
+	* 就是判断该对象原型链上[__proto__]有无指向构造函数.prototype属性
+* (splice方法)：splice方法返回的是数组。
+* (Math.max) Math.max搭配扩展运算符数组实现寻找数组最大值。
+* (echarts的配置项记录):
+	```javascript
+		const yAxisConfig = {
+				minInterval: 1, // ---- y轴最小间隔，确保为整数 ----
+			}
+
+
+	```
