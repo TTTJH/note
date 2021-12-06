@@ -324,4 +324,28 @@ console.log(son.getGame());
 	```
 * (三重循环):遍历每一项数组(第一个元素)，在遍历过程中使用左右指针(第二个和第三个元素)
 * (return): return语句只用在函数体中，否则报错。(函数体中的for循环可用)
-* (递归和while):在用递归之前，想想能不能用while;
+* (建议)：从数据的获取阶段进行数据格式优化，而不是在每次渲染阶段。
+* (canvas)：canvas的rotate,按照画布的左上角原点(0, 0),进行旋转，旋转后注意对应的x轴和y轴。
+* (判空处理): 判空处理的模拟空数据可以为: 空数组[]、空对象{}、
+* (Object) Object.prototype.hasOwnProperty() // --- 检测某个对象中是否含有该属性 --
+* (for...in):for...in遍历某个对象的可枚举属性。
+* (Object):Object.prototype.entries(); // 将某个对象的key和value二维数组化。G
+* (typeof): typeof 总是返回一个字符串
+* (声明与赋值): 通常都是判断一个变量有无被赋值(已声明)；那么如何判断一个变量有无被赋值呢？
+```javascript
+	if(params){ // ---- 报错：params is not defined ! ----
+		console.log("该变量已经声明");
+	}else{
+		console.log("该变量未曾被声明");
+	}
+
+	// ---- 可以这样来进行判断变量有无被声明 -----
+	if(typeof params !== 'undefined'){
+		console.log("该变量已经被声明")；
+	}else{
+		console.log("该变量未曾被声明");
+	}
+```
+* (Array):Array.prototype.slice.call()  该写法可以使得被传递进去的参数(多为伪数组)转换为真数组。
+	* 详细如下：①相当于让slice方法函数内部的操作对象(this),被替换成了该参数(例如:arguments)
+	* 然后xxx.slice(),返回自身，是个数组，就把伪数组转换为了数组。
