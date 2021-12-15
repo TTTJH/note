@@ -349,3 +349,46 @@ console.log(son.getGame());
 * (Array):Array.prototype.slice.call()  该写法可以使得被传递进去的参数(多为伪数组)转换为真数组。
 	* 详细如下：①相当于让slice方法函数内部的操作对象(this),被替换成了该参数(例如:arguments)
 	* 然后xxx.slice(),返回自身，是个数组，就把伪数组转换为了数组。
+
+* (prototype):问题：一个字符串，怎样让他受到join方法(数组的方法)的影响，添加指定间隔符号？
+	* let str = "helloworld";
+	* Array.prototype.join.call(str, "-"); // 'h-e-l-l-o-w-o-r-l-d'
+	* str // "helloworld"
+
+* (NaN):判断NaN的方法
+	* Number.isNaN()
+	* NaN是唯一的自身不等于自身的家伙。 if(n !== n){return "这是NaN!"}
+* (-0):-0的这个负号，是其方向符号，有时候会用到。
+* (prototype):
+	Array.prototype 是一个空数组[]
+	Function.prototype是一个空函数{}
+	Object.prototype是一个空对象{}
+	可以在进行默认赋值的时候使用这三个东东，因为他们只会执行一次，便一直存在，不会重复声明。
+```javascript
+	function fun(param1 = Function.prototype, param2 = Array.prototype, param3 = Object.prototype){
+        // ----- 如果调用该函数时不传参，默认参数值为空函数、空数组、空对象
+        console.log({
+                param1,
+                param2,
+                param3,
+        });
+        }	
+
+        fun();
+	// --- 输出 ----
+	{
+	  param1: {},
+	  param2: Object(0) [],
+	  param3: [Object: null prototype] {}
+	}
+	
+```
+* (冲突):当前分支与dev分支和master分支都有冲突，那么，应该先从master分支拉取一个分支命名为 冲突解决 分支，将当前分支合并到 冲突解决 分支上，然后将冲突解决分支合并到dev和master。
+
+* (String.prototype.split): const str = "\ntutu\ntutu"; str.split("\n"); // ["", "tutu", "tutu"];
+* (原型链):原型链的尽头是 Object.prototype
+* (flex):
+	* justify-content:
+		* space-between: 左右不留白，元素之间距离均分。
+		* space-evenly: 左右留白，元素之间距离均分。
+		* space-around: 左右留白，留白宽度为元素之间距离宽度的一半。
