@@ -392,3 +392,80 @@ console.log(son.getGame());
 		* space-between: 左右不留白，元素之间距离均分。
 		* space-evenly: 左右留白，元素之间距离均分。
 		* space-around: 左右留白，留白宽度为元素之间距离宽度的一半。
+* (css): 不要忘记cala属性！！！
+* (dom和ajax):
+	* 在这捋一下
+	* dom应该优先于数据渲染，页面暂时展示真实dom加空数据，或者loading.
+	* ajax应该在dom渲染完毕之后,.then()来更新数据状态，从而dom中的数据得以更新。
+	* 所以应该分为domRender函数和ajaxFun函数。
+* (this指向问题):在不同类型的prototype的方法中输出的this,该this指向调用该prototype上方法的那个对象。
+	* 例子：
+	* [11,22,33].map(item => {doSomething()});
+	* Array.ptototype.map这个方法中的this目前指向的就是[11, 22, 33]这个数组。
+	* 这个貌似有别于之前在《我不知道的JS》中了解到的this指向的相关知识，特殊记忆一下。
+* (三点运算符)
+	* 三点运算符做形参的时候，获取的时候就是数组形式。
+* (异步)：循环中的异步操作，是个很奇怪的东西。
+	* 循环内的所有异步操作，会等外层所有循环循环完毕之后，一同输出。
+* (异步)：接着上面的问题，一个循环中，循环内部代码是个setTimeout(异步操作)，这里有两点需要注意：
+	* 第一点：输出i的话(不用let声明的情况下),i的值都是同样的最后一个i
+	* 第二点：他们是同时输出的，不是挨个输出。
+* (原型)：
+	* 构造函数的prototype和实例化对象的__proto__指向同一个地方。
+* (原型):原型链继承：指的就是实例化函数使用其__proto__上的方法。
+* (原型链)：原型链调用就是顺着__proto__调用
+	* xxx.__proto__
+	* xxx.__proto__.__proto__
+	* xxx.__proto__.__proto__.__proto__
+* (Object.create):
+	* let obj = {}
+	* let obj2 = Object.create(obj);
+	* let obj2.__proto__ === obj; // true
+* (递归)：
+	* 最基础的使用递归实现的深拷贝
+	* 我觉得这个例子来理解递归也很不错。
+	* 最重要的是这一行：resultObj[key] = deepClone(obj[key])
+	* deepClone()函数的再次调用，让我们从honor层进入到FF15层再进行复制和赋值。
+	* 等到honor的内容被填充完毕，然后return honor,作为obj的一个属性。
+```javascript
+let obj = {
+        name:"tttjh",
+        games:[
+                "FF15",
+                "COD",
+                "GTA",
+        ],
+        gamesTime:{
+                FF15:"48h",
+                GTA:"68h",
+                COD:"28h",
+        },
+        honor:{
+                FF15:{
+                        gold:8,
+                        whiteGold:16,
+                },
+                GTA:{
+                        gold:12,
+                        whiteGold:18,
+                }
+        }
+}
+
+// --- 深拷贝 ---
+function deepClone(obj){
+  if(typeof obj !== "object"){
+    return obj;
+  }else{
+    let resultObj = {};
+    for(key in obj){
+      resultObj[key] = deepClone(obj[key]);
+    }
+    return resultObj;
+  }
+}
+
+console.log(deepClone(obj));
+```
+
+	
