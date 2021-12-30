@@ -468,4 +468,8 @@ function deepClone(obj){
 console.log(deepClone(obj));
 ```
 
-	
+* (git) 如何判断当前分支是从基于哪一个分支建立的
+	* git reflog show <childBranch>
+* (state):
+	* react框架中，setState和react hook在合成事件(onClick,onChange)中是异步的。
+	* 推测依据是，在一个点击事件函数中，前面循环输出一万条字符串，for循环后面加个setState，可以看到setState已经完成，for循环还在跑呢，以此可以推断在合成事件中呈异步表现。
