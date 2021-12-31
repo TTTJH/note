@@ -473,3 +473,13 @@ console.log(deepClone(obj));
 * (state):
 	* react框架中，setState和react hook在合成事件(onClick,onChange)中是异步的。
 	* 推测依据是，在一个点击事件函数中，前面循环输出一万条字符串，for循环后面加个setState，可以看到setState已经完成，for循环还在跑呢，以此可以推断在合成事件中呈异步表现。
+
+* (state):
+	* setState在原生事件和setTimeout中是同步的。
+	* setState的批量更新册罗会对其进行覆盖，取最后一次的执行。
+	* 如果是同时setState不同的值，在更新的时候会对其进行合并批量更新。
+* (正则表达式):	
+	* 注意^和$的使用。
+* (正则表达式)：
+	* 金额格式化 / 千位符号
+	* let reg = /\B(?=(\d{3})+(?!\d))/g
