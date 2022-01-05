@@ -483,3 +483,17 @@ console.log(deepClone(obj));
 * (正则表达式)：
 	* 金额格式化 / 千位符号
 	* let reg = /\B(?=(\d{3})+(?!\d))/g
+* (递归)：
+	* 理解递归的时候可以只想到第二层，在最简单的递归模式中想逻辑即可，剩下的都交给电脑解决。
+* (typeof):
+	* typeof [] // object
+	* typeof null // object
+	* typeof {} // object
+	
+* (原型遍历)：
+	* for...in...会遍历出其原型对象上的方法或属性
+* (moment):
+	* moment对象具有startOf和endOf方法,用于获取某个时间对象的某个时间段的最早或最晚
+* (antd):
+	* antd中，formItem的initValue和Select组件组合使用的时候，
+	* 设置的initValue应该是Select组件的option的value值，而不是label名。
