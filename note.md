@@ -497,3 +497,47 @@ console.log(deepClone(obj));
 * (antd):
 	* antd中，formItem的initValue和Select组件组合使用的时候，
 	* 设置的initValue应该是Select组件的option的value值，而不是label名。
+* (React hook):
+	* 函数式组件通过forwardRef向父组件暴露自己的dom.
+	* 函数式组件通过useImperativeHandle和forwardRef来向父组件暴露自身的某些方法。
+* (函数防抖)：
+	* 我举得函数防抖才是利用闭包特性。
+	* debounce函数并不会立即消失，因为内部函数引用着其timer变量。
+	```javascript
+	document.addEventListener("mousemove", debounce());
+        function debounce () {
+                let timer;
+                 return function(){
+                        clearTimeout(timer);
+                        timer = setTimeout(() => {
+                                console.log(":)");
+                        }, 1000);
+                 }
+        }
+	
+	```
+* (NaN):
+	* Number.isNaN只检测NaN
+	* isNaN不仅检测NaN还检测所有不可以转换为数字类型的东西。
+* (addEventListener):
+	* 事件绑定的第三个布尔类型参数是用来决定事件的出发类型：true:捕获阶段 false:冒泡阶段
+* (防止冒泡)：
+	* e.stopPropagation()
+* (数组去重):
+	```javascript
+	let arr = [11,11,11,22,22,33];
+
+	let obj = {};
+
+	arr.forEach(item => {
+        	obj[item] = "";
+	})
+
+	console.log(Object.keys(obj));
+	```
+* (方法):
+	* indexOf和includes的区别
+	* indexOf不可以检测NaN
+* (apply, call, bing):
+	* 这几个修改函数this指向其他对象的方法的原理就是，将该函数赋值为被指向对象的方法即可。
+	* 当函数作为对象的方法的时候，其this指向就是该对象。
