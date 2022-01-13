@@ -581,9 +581,44 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	```
 * (Function):
 	* 一个函数的length,是其参数的个数
-* (eChart):
-	* 既要表格的初始值自适应，又要进行初始值适当的留白，使用这两个配置项组合。‘
-	* yAxis:{
-		scale:true,
-		boundaryGap:["20%", "20%"]
-	}
+* (函数柯里化)：
+	* 对于已经柯里化后的_fn函数来说，当接收的参数数量与原函数的形参数量相同时，执行原函数。
+	* 当接收的参数数量小于原函数的形参数量时，返回一个函数用于接受剩余的函数，直至接收的参数数量与形参数量一致并执行。
+* (函数柯里化例子)：
+	* 通过柯里化之后的_regTestCurry函数，之后无需再传递第一个参数，只要传递待检测字符串就可以了，更加的简便。
+	```javascript
+	        function curry(fn){
+                return _curry(fn);
+        }
+
+        function _curry(fn, ...args){
+                return function(...newArgs){
+                        const allArgs = [...args, ...newArgs];
+                        if(allArgs.length >= fn.length){
+                                return fn(...allArgs);
+                        }else{
+                                return _curry(fn, ...allArgs);
+                        }
+                }
+        }
+
+        const regTest = (reg, item) => {
+                return reg.test(item);
+        }
+
+        const regTestCurry = curry(regTest);
+
+        const phoneRegTest = regTestCurry(/^[1]{1}[3-9]{2}[0-9]{8}$/);
+        const emailRegTest = regTestCurry(/^\w+@[a-zA-Z]+.[a-zA-Z]{3,6}$/);
+
+        const result = phoneRegTest("17739753629");
+        const result2 = phoneRegTest("10008");
+
+        const result3 = emailRegTest("11498585111@qq.com");
+        const result4 = emailRegTest("sxxxxxx");
+
+        console.log(result);
+        console.log(result2);
+        console.log(result3);
+        console.log(result4);
+	```
