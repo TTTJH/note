@@ -541,3 +541,49 @@ console.log(deepClone(obj));
 * (apply, call, bing):
 	* 这几个修改函数this指向其他对象的方法的原理就是，将该函数赋值为被指向对象的方法即可。
 	* 当函数作为对象的方法的时候，其this指向就是该对象。
+* (伪数组转数组)：
+	* 伪数组转数组的几种方法：
+	* [...arguments]
+	* Array.prototype.slice.call(arguments);
+	* Array.from(arguments)
+* (arguments):
+	* 箭头函数中arguments不可用
+* (函数柯里化)：
+	```javascript
+	/**
+ * 将函数柯里化
+ * @param fn    待柯里化的原函数
+ * @param len   所需的参数个数，默认为原函数的形参个数
+ */
+ function curry(fn,len = fn.length) {
+    return _curry(fn,len)
+}
+/**
+ * 中转函数
+ * @param fn    待柯里化的原函数
+ * @param len   所需的参数个数
+ * @param args  已接收的参数列表
+ */
+function _curry(fn,len,...args) {
+    return function (...params) {
+        let _args = [...args,...params];
+        if(_args.length >= len){
+            return fn(..._args);
+        }else{
+            return _curry(fn,len,..._args)
+        }
+    }
+}
+let _fn = curry(function(a,b,c,d,e){
+    console.log(a,b,c,d,e)
+});
+_fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
+	```
+* (Function):
+	* 一个函数的length,是其参数的个数
+* (eChart):
+	* 既要表格的初始值自适应，又要进行初始值适当的留白，使用这两个配置项组合。‘
+	* yAxis:{
+		scale:true,
+		boundaryGap:["20%", "20%"]
+	}
