@@ -622,3 +622,16 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
         console.log(result3);
         console.log(result4);
 	```
+* (css选择器):
+	```javascript
+	<ul>
+	    <p></p>
+	    <li></li>
+	    <li></li>
+	    <li></li>
+	</ul>
+	```
+	* li:nth-child和li:nth-of-type
+	* 前者的选择范围包括<p> ---> <li>
+	* 后者的选择返回只包括<li> ---> <li>
+
