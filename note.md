@@ -634,4 +634,20 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	* li:nth-child和li:nth-of-type
 	* 前者的选择范围包括<p> ---> <li>
 	* 后者的选择返回只包括<li> ---> <li>
-
+* (css选择器)：
+	* 不选择第一个：
+		* xxx:not(first-child(1))
+		* xxx:not(first-of-type(1))
+		* xxx:nth-of-type(n+1)
+* (ts):type 联合类型
+* (ts): ts里面定义一个指定类型的变量：let value: xxx = "value";
+* (ts): ts的unknown类型只接受any类型和unknown类型的变量进行赋值。
+* (三点运算符 与 括号形成的表达式)：
+	* 不要小看括号的能耐
+	* 如何在tag===false的时候，数组第三项不存在(注意是不存在，不是为空字符串或者空对象)
+	* let obj = {test:"test"};
+	* let tag = false;
+	* let arr = [obj, obj, tag ? obj : {}]; // ❌ - 这样会让该数组第三元素仍旧存在，只不过为空对象 -
+	* let arr2 = [obj, obj, ...(tag ? [obj] : [])]; // ✅ - 这样第三个元素并不存在，数组长度为2 -
+* (this):
+	* 函数作为对象的方法的时候，该函数内部的this指向该对象。
