@@ -689,4 +689,4 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 * (同步与异步)：
 	* 循环中调用异步代码可千万千万要注意了！！！
 * (栈和队列)：用两个栈模仿队列：
-	* ![img img](../imgs/stackToQueue.gif)
+	* ![img img](./imgs/stackToQueue.gif)
