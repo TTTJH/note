@@ -666,3 +666,25 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	* 通过子元素同时出发子元素的事件函数以及父元素的事件函数，但是父子的事件函数的event事件对象都是子元素的事件对象。
 * (css)：visibility:hidden 搭配 opacity 实现渐入渐入美滋滋。
 * (event):事件对象中的clientX/Y是鼠标相对于浏览器窗口的位置。offsetTop/Left是元素相对于外部元素的位置。
+* (css):不是最后一个元素：:not(:last-child)
+* (循环)：
+	* for ... of 可以break但不可以return.
+	* map和forEach 可以return但不可以break
+* (递归扁平化数组):
+	```javascript
+		function takeOut(arr){
+			let res = [];
+			arr.forEach(item => {
+				if(Array.isArray(item)){
+					res = res.concat(takeOut(item));
+				}else{
+					res.push(item);
+				}
+			})
+			return res;
+		}
+	```
+* (数组方法)：forEach没有返回值！map有返回值！
+* (哲学)：自己真的是个菜鸟，千千万万别自视清高，太幼稚太搞笑了，菜鸟论！菜鸟论！菜鸟论！
+* (同步与异步)：
+	* 循环中调用异步代码可千万千万要注意了！！！
