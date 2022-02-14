@@ -690,3 +690,14 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	* 循环中调用异步代码可千万千万要注意了！！！
 * (栈和队列)：用两个栈模仿队列：
 	* ![img img](./imgs/stackToQueue.gif)
+* (eChart):
+	* 怎样实现eChart的双行X轴，并且第二行X轴是第一行X轴的一个总结轴。
+	* xAxis设置为数组对象，第二行x轴单独设置postion、textStyle的fontSize和heightLine
+* (字符串方法)：
+	* String.prototype.toLowerCase()和String.prototype.toUpperCase()方法都只会将字符串中的英文字符进行大小写转换。
+* (构造函数)：
+	* 构造函数的私有变量是定义在this里面的。
+* (时间复杂度)：
+	* 只要算法里面没有递归和循环，就算有上万行代码,时间复杂度也是O(1)
+* (栈时间复杂度为O(1)的min()方法)：
+	* ![img img](./imgs/stackMin.gif)
