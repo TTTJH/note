@@ -701,3 +701,28 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	* 只要算法里面没有递归和循环，就算有上万行代码,时间复杂度也是O(1)
 * (栈时间复杂度为O(1)的min()方法)：
 	* ![img img](./imgs/stackMin.gif)
+* (vim):全局搜索--- /keyWord 然后n或者N进行跳转。
+* (typeScript):
+	* ts中注意数据的源头的结构设置。
+* (数据源)：
+	* 再次强调，改变数据从数据源进行入手。
+* (学习方法)：必要的时候还是要进行视频学习，更系统，更容易入手。
+* (递归倒叙输出链表)：
+	* 难得自己写出个递归
+```javascript
+	var reversePrint = function(head) {
+	    if(!head){
+        	return []
+    	}
+    	    let res = [];
+    	function fun(node){
+            if(!node.next){
+                return [node.val];
+            }else{
+                return res = res.concat(fun(node.next), [node.val])
+            }
+        }
+            return fun(head);
+	};
+```
+
