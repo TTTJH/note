@@ -732,8 +732,8 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 * (说话)：
 	* 有机会一定 ---> 肯定有机会
 * (this):
-	```javascript
-	  var user = {
+```javascript	  
+var user = {
     		count:1,
     		getCount: function(){
       	  return this.count;
@@ -747,7 +747,7 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
     result1,
     result2
   })// - 1,undefined -
-	```
+```
 * (flex-shrink):
 	* 计算原则：
 	*     首先计算溢出空间量：子元素宽度总和 - 父元素宽度 = 溢出总量
@@ -772,4 +772,4 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
 	* 当①请求请求完毕，①回调函数进入同步任务队列执行输出。
 	* 之后②请求请求完毕，然后③请求也请求完毕。
 	* 然后②回调函数一直会在同步任务队列中执行，执行完毕之后输出C对象，③回调函数进入同步任务队列执行，后输出B对象。
-	![img img]("./imgs/eventLoop20220226.png")
+	* ![img img](./imgs/eventLoop20220226.png)
