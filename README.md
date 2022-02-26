@@ -725,4 +725,26 @@ _fn(1)(2)(3,4,5);   // print: 1,2,3,4,5
             return fun(head);
 	};
 ```
+* (position):
+	* fixed和sticky的区别：
+	* fixed相对于屏幕进行固定。
+	* sticky相对于最近的可滚动祖先进行固定。
+* (说话)：
+	* 有机会一定 ---> 肯定有机会
+* (this):
+	```javascript
+	  var user = {
+    		count:1,
+    		getCount: function(){
+      	  return this.count;
+    	 }
+         }
 
+  const result1 = user.getCount(); // - 作为对象的方法调用，this指向该对象 -
+  const func = user.getCount;
+  const result2 = func(); // - 作为普通函数调用，this指向window -
+  console.log({
+    result1,
+    result2
+  })// - 1,undefined -
+	```
