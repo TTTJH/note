@@ -788,3 +788,61 @@ var user = {
 	* 之后②请求请求完毕，然后③请求也请求完毕。
 	* 然后②回调函数一直会在同步任务队列中执行，执行完毕之后输出C对象，③回调函数进入同步任务队列执行，后输出B对象。
 	* ![img img](./imgs/eventloop20220226.png)
+* (词法作用域 和 动态作用域)：
+	* 词法作用域 是是在写代码的时候或者说定义的时候确定的。动态作用域反之。	
+	* JS是词法作用域，看的是代码定义的位置。
+    ```
+    let a = "hello";
+    function test(){
+        console.log(a);
+    }
+    function anotherTest(){
+        let a = "world";
+        test();
+    }
+
+    anotherTest(); // - 输出的是hello,因为test函数是在全局定义的，寻找全局变量a，而不是看test函数调用位置的局部变量a
+    ```
+* (let和const):与var不同，let和const声明的变量不会作为window对象的属性！！！
+* (this):
+	* 当函数作为对象的方法的时候，其this指向为该对象，前提是该函数不是箭头函数。
+	* 当箭头函数作为对象的方法的时候，其this仍旧指向外层this,一般也就是windows
+* (构造函数)：
+	* 构造函数中如果return了一个对象，根据该构造函数生成的实例化对象的this实际指向其构造函数返回的对象。
+* (Iterator遍历器)：Iterator遍历器主要供for...of消费,遍历器本质上，就是个指针对象。
+* (Iterator遍历器)：以下是个给对象部署iterator遍历器，使其可以被for...of...语法遍历的例子。
+```
+    const obj = {
+        data:["11", "22", "33"],
+        [Symbol.iterator]:function(){
+            let index = 0;
+            const that = this;
+            return {
+                next(){
+                    if(index < that.data.length){
+                        return {
+                            done:false,
+                            value:that.data[index++]
+                        }
+                    }else{
+                        return {
+                            done:true,
+                            value:undefined,
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    for(let item of obj){
+        console.log(item); // 11,22,33
+    }
+```
+* (http响应状态码)：
+	* 304:无修改，通知客户端采用缓存
+* (非对称加密)：
+	* 非对称加密是指：用A钥匙上锁，就只能用B打开。用B要是上锁，就只能用A打开。把那个要是公开出去，这个钥匙就是公钥，另一个则是私钥。
+* (构造函数调用)：
+	* const x = new Boolean(false);
+	* x是个对象，不是个布尔值。
