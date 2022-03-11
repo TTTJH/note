@@ -340,4 +340,54 @@
 		* 跨域：
 			* 跨域是浏览器基于同源策略的一种手段。
 			* POSTMAN可以获取接口数据，但是浏览器却不行，因为这就是浏览器做的操作。
-	
+	* 数据结构复习：
+		* 什么是集合？
+			* 集合表示一组互不相同的元素(也就是不重复的元素)
+			* 集合以[值，值]的形式存储元素。	
+		* 什么是字典？
+			* 字典也用于表示一组不重复的值。
+			* 字典以[键，值]对的形式来存储数据。
+			* 字典也成为映射
+		* 说出复制链表的思路：
+			* 首先cur指向head
+			* 接着新构造一个节点实例对象newHeader,并且newCur也指向这个新的节点实例对象
+			* 开始while循环，种植条件是cur为null
+			* 循环过程中不断的生成新的实例化节点对象并赋值给newHeader的next,生成实例化对象的是传递的element参数是cur.element
+			* 循环过程中更新cur = cur.next,newCur = newCur.next
+			* 最终返回newHeader.next这就是新链表的头部
+		* 说出复制复杂链表的思路：
+			* Map映射的方法：
+				* 循环一遍现有链表，在循环当中以cur作为Map的key,new Node(cur.element)作为Map的value.
+				* 重置cur=head,再次循环现有链表，通过cur这个key用Map.prototype.get来得到其对应new Node，设置该节点对应的next属性和random属性
+				* 其next属性和random属性指向的节点，也是通过cur.next和cur.random作为key的方式用Map.prototype.get(cur.next)和Map.prototype.get(cur.random)来得到。
+			* 链表拼接+拆分的方法：
+				* 循环一遍现有链表，每次循环中new Node(cur.element)生成cur值相同节点，新节点next指向cur.next，cur的next修改指向新节点，cu更新为cur.next.next;一遍循环下来，原有链表基础上新添加了一个链表。
+				* 重置cur=head,循环一遍链表，cur.next的random修改指向为cur.random.next,也就是新节点的random指向其cur的random节点的下一个节点。一遍循环下来，新节点的random也被分配完毕。
+				* 重置cur=head,循环一遍链表，暂存cur.next为tmp，修改cur.next为cur.next.next,也就是第一个链表跳过第二个链表内容进行连接，cur = tmp,下一次循环从暂存节点开始。一遍循环下来，一条链表就被拆分为两条。
+			
+		* Set集合：
+			* Set集合有哪些属性、方法？
+				* size属性
+				* add方法
+				* delete方法
+				* has方法
+				* clear方法
+			* Set集合的四个遍历方法：
+				* Set.prototype.keys()返回key的遍历器
+				* Set.prototype.values()返回values的遍历器
+				* Set.prototype.entries()返回键值对的遍历器
+				* Set.prototype.forEach()使用回调函数遍历每个成员
+		* Map：
+			* Map有哪些属性和方法？
+				* size属性
+				* set方法
+				* get方法
+				* has方法
+				* delete方法
+				* clear方法				
+			* Map的四个遍历方法:
+				* Set.prototype.keys()返回key的遍历器
+				* Set.prototype.values()返回values的遍历器
+				* Set.prototype.entries()返回键值对的遍历器
+				* Set.prototype.forEach()使用回调函数遍历每个成员
+				
