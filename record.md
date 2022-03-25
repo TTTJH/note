@@ -327,11 +327,22 @@
 			* HTTP请求-描述一下HTTP报文结构
 			* HTTP响应-描述一下HTTP报文结构
 			* 浏览器解析渲染页面
-				* 构建DOM树 
-				* 构建CSS规则树
-				* 构建render树：WEB浏览器将DOM和CSS结合，构建出渲染树
-				* 布局(Layout):计算出每个节点在屏幕的位置
-				* 绘制(Painting):浏览器开始渲染并绘制页面。
+				* 解析HTML文件，创建DOM树。
+					* 浏览器解析HTML代码，然后创建一个DOM树。每一个HTML标签都有其一个对应的节点，每一个文本也会有其对应的文本节点。DOM树的根节点就是documentElement，对应的标签是HTML标签。
+				* 解析CSS，计算出最终的样式数据。解析CSS的时候会按照标签中的style > 内联样式 > 外联样式来进行优先级。
+				* 将CSS和DOM合并，构建渲染树。
+					* 渲染树和DOM树的区别是前者不仅仅是节点与html对应，并且每个节点中都存储对应的css属性。
+				* 布局和绘制：
+					* 一旦渲染树创建完成，浏览器就可以根据渲染树将页面绘制到屏幕上。
+					* 注意以上步骤不是一次性完成的，如果DOM和CSS被修改，以上过程会重复执行。
+					* Repaint（重绘）
+						* 重绘是指不影响元素在网页中位置的元素样式被改变时，例如background-color、border-color、visibility,浏览器会根据元素的新属性重新绘制一次使元素呈现新的外观。
+					* Reflow（重排）
+						* 改变元素在网页中的某个位置属性，就会引发重排。
+						* 重绘不一定会重排，重排一定会重绘。
+				* 基于重绘和重排，有什么浏览器优化渲染建议？
+					* 将多次需要改变位置的元素positon设置为absoluted或者fixed使其脱离文档流，改变其位置时不会引发重排。
+					* 不去挨个改变css属性，可以直接给待修改元素加个类名。
 		* URI、URL、URN：
 			* URI代表资源的名称
 			* URL代表资源的路径
@@ -340,6 +351,10 @@
 		* 跨域：
 			* 跨域是浏览器基于同源策略的一种手段。
 			* POSTMAN可以获取接口数据，但是浏览器却不行，因为这就是浏览器做的操作。
+		* 进程与线程：
+			* 进程是系统进行资源分配和调度的一个独立单位。
+			* 线程是CPU调度和分派的基本单位，它是比进程更小的能够独立运行的基本单位。
+			* 一个进程至少由一个线程组成。
 	* 数据结构复习：
 		* 什么是集合？
 			* 集合表示一组互不相同的元素(也就是不重复的元素)
@@ -365,6 +380,17 @@
 				* 重置cur=head,循环一遍链表，cur.next的random修改指向为cur.random.next,也就是新节点的random指向其cur的random节点的下一个节点。一遍循环下来，新节点的random也被分配完毕。
 				* 重置cur=head,循环一遍链表，暂存cur.next为tmp，修改cur.next为cur.next.next,也就是第一个链表跳过第二个链表内容进行连接，cur = tmp,下一次循环从暂存节点开始。一遍循环下来，一条链表就被拆分为两条。
 			
+		* 说说选择排序的思路：
+			* 以arr.length-1为终点，1为起点该范围内所有item和arr[0]进行大小比较，较小者每次被替换指arr[0]
+			* 第一轮比较完成之后arr[0]现在就是数组最小值。
+			* 接着以length-1为终点，2为起点该范围内所有item和arr[1]进行大小比较，最小者每次被替换至arr[1]的位置。		
+		* 说说冒泡排序的思路：
+			* 从0项开始，与其右边元素(i+1)对比，如果右边较小，两者调换位置。
+			* 每轮循环结束，最大值已经在数组末尾处。
+		* 说说插入排序的思路：
+			* 从第二项开始(索引为1项目),一直与其左边部分项进行比较，如果比自身大就交换，与左半部分比较的停止条件是当前左边项已经不大于当前项，或者左边已经没有项了。
+		* 说一说归并排序的思路：
+		* 说一说快速排序的思路：
 		* Set集合：
 			* Set集合有哪些属性、方法？
 				* size属性
@@ -391,3 +417,316 @@
 				* Set.prototype.entries()返回键值对的遍历器
 				* Set.prototype.forEach()使用回调函数遍历每个成员
 				
+* 前端八股文：
+		* 说一下BFC是什么？
+			* BFC就是块级格式化上下文。
+			* BFC内部的box会在垂直方向上挨个放置。
+			* BFC内部垂直方向上的box的margin值会重叠。
+			* BFC区域不会和float box重叠。
+		* 如何触发BFC？
+			* 根元素html
+			* float的值不为none
+			* overflow的值不为visible
+			* display设置为flex
+			* position设置为absolute / fixed
+		* 如何让一个元素水平居中？
+			* text-align:center;
+			* margin:0 auto;
+			* 绝对定位+transform	
+			* flex布局：justify-content:center;
+			* display:inline-block;text-align:center; 
+			* line-height;
+		* 隐藏某个元素的方法：
+			* opacity:0;不会改变页面布局，但是该元素仍然可触发事件。
+			* visibility:不改变页面布局，不会触发事件。
+			* display:改变页面布局，不会触发事件。
+	* 说一下js的基础数据类型：
+		* Number、String、boolean、null、undefined、Symbol
+	* 说一下JS的引用数据类型：
+		* Objcet,Function,Array,Date,Set,Map
+	* 说一下typeof的缺点：
+		* 不能区分null、Array、Oject，都返回Objcet
+	* 说一下instanceof的缺点：
+		* 不能对基本数据类型进行判断。
+	* 最准确的数据类型判断方法是什么：
+		* Object.prototype.toString.call()
+	* 说一下var、let、const的区别：
+		* var的最小活动范围是函数作用域；而let和const的最小活动范围是块作用域。
+			* 这里可以指出一个经典的例子：一个for循环里面搞个setTimeout延时器输出i的值，用var和let定义i的区别。
+		* var存在变量提升，let和const不存在变量提升。
+		* var允许相同作用域下重复声明，let和const不允许。
+		* 在全局作用域中，用var声明的变量会成为window全局对象的属性，let和const可不会。
+	* 说一下你对闭包的理解：
+		* 闭包是指有权访问另一个函数作用域中变量的函数。
+		* JS在函数执行完之后，内存也会随之被回收，但由于内部函数还在保持着对外部函数变量的引用，即使上级函数执行完，作用域也不会随之销毁。
+		* 闭包典型应用场景：
+			* 防抖和节流：
+	* 说一下你对this的理解：
+		* this在普通函数中指向window
+		* this在对象方法中指向该对象
+		* new关键字生成新对象并且构造函数中的this指向该对象。
+		* this在箭头函数中关联其外层对象
+		* call、apply、bind后this指向修改指向为第一个参数。
+	* 说一下你对原型和原型链的理解：
+		* 首先明确两个：构造函数 和 实例化对象
+		* 实例化对象的__proto__属性指向一个对象。
+		* 构造函数的prototype属性指向一个对象。
+		* 构造函数的prototype属性与其实例化对象的__proto__属性指向的就是同一个对象。
+		* 当实例化函数自身不准备某个待查找属性时，会去其__proto__指向的对象身上寻找。
+	* 说一下你对new关键字的理解：
+		* 首先创建一个空对象。
+		* 让该对象的__proto__指向其构造函数的prototype
+		* 让其构造函数的this指向该对象为该对象进行内容填充。
+	* 说一下eventLoop事件循环机制：
+		* 同步任务进入主线程，异步任务进入任务队列，主线程内的任务执行完毕为空，会去任务队列读取对应的任务，推入主线程执行。
+		* 上述过程的不断重复就是事件循环。
+		* 其中异步代码还分为宏任务和微任务。
+	* 说一下浏览器中事件循环：
+		* 浏览器中是这样执行微任务和宏任务的。
+		* 执行清空完毕微任务队列后。
+		* 去取出一个宏任务执行完毕，查看微任务，有的话清空微任务队列。
+	* 说一说await之后的代码有什么特别的地方？
+		* await关键词右边代码变成同步代码。
+		* await关键词下方代码变成微任务代码。
+	* 说一说防抖的思路：
+		* 定义一个函数，函数内声明个timer变量存储时间器。
+		* 该函数return为另一个函数，return函数中clearTimeout掉timer,赋值新setTimeout.
+		* 就是多个闭包函数(return函数)维护同一个timer变量的故事。
+	* 说一说节流的思路：
+		* 定义一个函数，该函数维护一个lastTime变量。
+		* 该函数return另一个函数，return函数中通过当前时间nowTime和lastTime的对比是否超过delay来决定是否执行对应fn
+	* 说一说MVC、MVP、MVVM：
+		* 我对MVC理解就好比，js请求回调函数中获取数据，然后dom操作修改页面展示效果。
+		* 对mvp理解就是像那种ejs，jsp模板，只要在js中修改对应数据，页面会跟着改变。
+		* MVVM就是双向绑定，页面上修改他js中保存的数据会变，反之亦然。
+	* 说一说如何实现浏览器内多个标签页之间的通信？
+		* localStorage.注意sessionStorage是会话级存储空间，每个标签页都是单独的。
+		* websocket
+		* setInterval+cookie
+		* broadcast channel:广播频道
+	* 说一说你对这几个页面生命周期事件的理解：
+		* DOMContentLoaded：
+			* 浏览器已经完成HTML加载，构建好了DOM树。
+		* load:
+			* 浏览器完成了所有资源加载，包括图片、样式等。
+		* befoeunload：
+			* 用户正在离开，我们可以在这个阶段检查用户是否保存了更改，并询问他是否真的要离开。
+		* unload:
+			* 用户真的要离开了。
+	* 说一说什么是DOM:
+		* DOM就是由HTML标签对应生成的文档对象模型，他把文档当作一个对象，这个对象定义了处理网页内容的方法。
+	* 说一说什么是BOM:
+		* BOM是指浏览器对象模型，他把浏览器当作一个对象，这个对象定义了与浏览器交互的方法。
+		* window全局对象
+			* window下面属性：
+				* location
+				* navigator
+				* screen
+				* document
+	* 说一说你对设备独立像素的理解：
+		* 一个设备独立像素可能包含一个或者多个物理像素点，包含的越多则越清晰。
+		* 假设有台A旧手机分辨率为320*480，其屏幕上显示着一张图片
+		* 然后有台B新手机分辨率为640*960，其屏幕上也显示着旧手机显示的那张图片
+		* 那请问在新手机上这个图片的显示效果会缩放一倍嘛？（这样猜测原因是新手机分辨率是旧手机分辨率的一倍）
+		* 实际上是不会的，不管新·手机分辨率多高，他们所展示的界面比例都是类似的。
+		* 因为新技术（iphone4视网膜屏幕）的诞生，新手机将2*2的像素当作旧手机的1像素使用，使得显示效果更好，显示元素大小不变。
+		* 假设某元素宽度为300个像素，那么A旧手机就会用300个物理像素去渲染它，而B新手机会用600个物理像素去渲染他。
+		* 所以我们必须用 一种单位 同事告诉 不同分辨率的手机，他们在界面上显示元素的大小是多少，这个单位就是 设备独立像素(DIP/DP)
+		* 就比如上面那个300像素宽的元素，在A手机中被300个物理像素渲染，在B手机中被600个元素渲染，实际上，该元素的宽度是300个设备独立像素。
+		* 在chrome的移动端开发模式下，设备对应的像素大小就是该设备的设备独立像素，例如iPhone6的实际物理像素是1080*1920,它的设备独立像素是414*736.
+	* 说一说你对设备像素比的理解：
+		* 设备像素比device pixel ratio简称dpr,即 物理像素 和 设备独立像素 的比值。
+		* 在浏览器中我们可以根据window.devicePixelRatio来获取dpr
+		* 在CSS中使用媒体查询min-device-pixel-ratio区分dpr
+		* 在CSS中用到最多的px单位，即css像素，当页面缩放比例为100%(默认)，一个css像素 等于一个 设备独立像素。
+			* 但是CSS像素是很容易被改变的，当用户对浏览器进行了放大，css像素会被放大，这时一个css像素会跨越更多的物理像素。
+			* 页面缩放系数 = css像素 / 设备独立像素
+		* 当设备像素比DPR为1：1的时候，设备使用1*1个物理像素显示1个css像素
+		* 当设备像素比dpr为2：1的时候，设备使用2*2个物理像素显示一个css像素
+	* 说一说你对viewport标签的理解：
+		* 该标签定义视区宽高，可缩放范围以及是否可缩放，以及页面整体宽高设置。
+	* 说一说你对移动端1px的理解：
+		* 在设备像素比大于1的屏幕上，我们设置的1px实际上会被多个物理像素渲染，这就会出现1px在有些屏幕比较粗的情况。
+		* 可以通过媒体查询来区别设置：
+			* @media only screen and (-min-device-pixel-ratio:2) 
+			* 然后用背景图片代替线条宽度设置或者用scale缩小宽度。
+	* 说一说HTML5的新特性：
+		* 语义化标签：<header>、<footer>、<nav>
+		* 音频视频标签：audio、video
+		* 数据存储：localStorage、sessionStorage
+		* Canvas、Websocket
+		* history API
+	* 说一说html标签中href和src的区别：
+		* href是超文本引用，他指向资源引用位置。
+		* src目的把资源下载到页面中。
+		* href不会阻塞对文档的处理，src会阻塞对文档的处理。
+	* 说一说你对iframe的理解：
+		* iframe可以在一个网页中嵌套另一个网页的内容。
+		* 优点：
+			* 一定程度上属于模块化。
+			* 便利不同团队协助开发。
+			* 便于第三方内容的添加。
+		* 缺点：
+			* 不利于搜索引擎搜索。
+			* 移动端兼容性问题。
+			* 增加请求次数，页面性能降低。
+	* 说出两个内联块元素：
+		* img
+		* input
+	* 说一下script标签中的defer和async
+		* <script src="xxx"></script>
+		* <script src="xxx" defer></script>
+		* <script src="xxx" async></script>
+		* 不加任何表示的script引入遇到没有属性的script标签，会暂停解析，去发送网络请求获取该JS代码执行后再进行HTML解析，可见会阻塞对HTML的解析。
+		* defer:带有该属性的script标签，获取JS代码的请求是异步的，不会阻塞HTML解析。一旦网络请求回来之后，如果此时HTML还未解析完，浏览器会等待HTML解析完毕之后再执行先前获取的JS代码。
+		* async:此属性使得script脚本异步加载，不会阻塞HTML解析。一旦网络请求回来之后，不论此时HTML是否解析完毕，立刻执行先去获取的JS代码。
+	* 说一说常见的meta属性：
+		* charset:指定html编码格式，常见是utf-8
+		* name & content:
+			* viewport 定义视窗宽高以及缩放范围
+			* keyword 提供搜索引擎关键字
+			* description 网页整体描述
+	* 说出flex布局元素垂直居中的两种方法：(grid同理)
+		* .box{
+			display:flex;
+			justify-content:center;
+			align-items:center;
+		}
+
+		* .box{
+			display:flex;
+			justify-content:center;		
+		}
+		.item{
+			align-self:center;
+		}
+	* 说一下使用flex布局时候，末尾行剩余元素怎样居左对齐。
+		* 子元素宽度固定的情况：
+			* 当该flex布局第一行有3个元素
+			* 第二行有两个元素
+			* 每个元素宽度为20vw
+			* // 最后一个元素
+			* .son:last-child:nth-child(3n-1){
+				margin-right:clac(20vw*1);
+				}
+			* // 倒数第二个元素
+			* .son:last-child:nth-child(3n-2){
+				margin-right:clac(20vw*2);
+				}
+		* 或者直接在缺几个div补几个空div
+	* 说一下相邻行内元素之间重新空隙的原因以及解决方法：
+		* 原因:html标签之间的回车换行符号被解析成了空格了。
+		* 解决方法：
+			* 设置容器字体大小为0，那个由换行符转换而来的空格大小就被设置为0了。
+			```html
+			<space>
+				<a>111</a>
+				<a>123</a>
+			</space>
+			```
+			```css
+				space{
+					font-size:0;
+				}
+				a{
+					font-size:12px;
+				}
+			```
+	* 说一说display:none和visibiliy:none的区别：
+		* visibility:none不会引发重排。
+		* visibility元素不会脱离文档流。
+	* 说一说flex:1的含义：
+		* flex-grow:1;flex-shrink:1;flex-basic:0%;
+	* 说一说flex:0%的含义：
+		* flex-grow:1;flex-shrink:1;flex-basic:0%;
+	* 说一说flex:0 0 的含义：
+		* flex-grow:0;flex-shrink:0;flex-basic:0%;
+	* 说一说1px问题的解决方案：
+		* 给该元素设置::before伪元素，该伪元素content为空，然后宽高为200%，border:1px,使用绝对定位居中然后transform:scale(0.5, 0.5);
+	* 你觉得动画最小时间间隔是多久？
+		* 一般屏幕刷新率都是60HZ，即1秒刷新60次，即1/60 * 1000ms = 16.7ms
+	* 元素竖向的百分比设定是相对于容器的高度嘛？
+		* 当按照百分比设定一个元素的宽度时，是相对于父容器的宽度计算的，但是，对于一些表示竖向距离的属性，例如padding-top,padding-bottom,margin-top,margin-bottom等，当按照百分比设定他们的时候，依据的也是父容器的宽度而不是高度。
+	* 说一说CSS优化的建议：
+		* 关键内容部分的CSS采用内敛方式
+		* 异步加载CSS
+			* 怎样实现异步加载呢，可以通过JS对link标签进行控制修改其具体属性
+		* 选择器的嵌套层级不要太多，避免使用后代选择器
+			* 因为选择器是从右往左进行匹配：
+				* 例如#markdown .content h3匹配规则如下：
+					* 先匹配h3
+					* 去除祖先不是.content的元素
+					* 去除祖先不是#markdown的元素 
+		* 类名语义化
+		* 减少!important的使用
+		* 避免重复的部分
+		* CSS动画尽量用transform而不是left和top
+	* 说一说怎样让chrome支持小于12px的文字
+		* zoom属性设置百分比或者小于等于1的小数
+		* transform:scale(小于等于1的小数)
+	* 说一说sass怎样定义混入
+		* @mixin 和 @include
+	* 什么是回流(也就是重排)？
+		* 浏览器根据样式计算每个盒子在页面的大小与位置
+	* 什么是重绘？
+		* 计算元素位置、大小外其他样式属性
+	* 什么时候触发重排？
+		* 页面一开始渲染的时候。
+		* DOM操作
+		* 元素的位置发生变化的时候
+		* 元素的尺寸发生变化的时候
+		* 浏览器窗口发生变化的时候
+		* 获取浏览器offsetTop、offsetLeft、offsetWidth、offsetHeight、scrollTop等属性时候浏览器为了获取这些值而进行计算，也会进行回流。	
+	* 如何减少回流？
+		* 如果向设定元素的样式，尽量使用类名修改来实现。
+		* 复杂动画为该元素设置positon:absolute脱离文档流减少对其他元素的影响
+		* 不要用table布局，容易牵一发动全身
+	* 说一说你对px、em、rem、vw的理解：
+		* px是指像素单位。
+		* em是相对父节点字体大小计算，如果自身定义了font-size则按照自身来计算
+		* rem是相对于根节点字体大小计算
+		* vw是相对于页面视窗大小计算。
+	* 说一下二分查找法的两种解法的思路：
+		* 一种是递归
+		* 一种是双指针
+	* 说一下快速排序的思路：
+	* 说一下快速排序、归并排序、堆排序的时间复杂度：
+	* 请你简单说一下sort排序源码：
+		* 当数组长度小于10使用插入排序，因为对于插排和快排，理论上时间复杂度是O(n^2)和O(n*logN),
+		* 但插排的最好情况下时间复杂度是O(n),所以小规模数据用插入排序
+		* sort中采用的快速排序使用中间位数的方法，减少快速排序出现最差情况O(n^2)的概率。
+	* 说出几个在做promise题时候注意的问题：
+		* async函数中await的new Promise如果返回值的话就不执行await下面的代码了
+		* .then函数中的参数期待的是函数，如果不是函数的话会发生透传
+		* 注意定时器的延迟时间
+		* promise函数resolve之后的代码仍会继续执行
+		* xx.then()是放到微任务队列中去的
+	* 说一说你对Generator函数的理解：
+		* function关键字与函数名直接有一个星号
+		* 函数体内部使用yeild表达式，定义不同的内部状态
+		```javascript
+		function* helloWorldGenerator(){
+			yield "hello";
+			yield "world";
+			return "ending";
+		}
+		```
+		* Generator函数会返回一个遍历器对象，而通过yield关键字可以暂停generator函数返回的遍历器对象的状态。
+		* 遇到yield关键字，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值。
+		* 下一次调用next方法时，再继续往下执行，知道遇到下一个yield表达式
+		* 如果没有遇到yield关键字就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回对象的value属性值。
+		* 没有return的话，value为undeinfed
+		* 每次next方法返回的对象的value属性对于状态值，done判断是否存在下一个状态
+	* 说一说generator和async await的区别：
+		* async函数的返回值是promise对象，这比Generator函数的返回值是一个Iterator更方便，你可以使用then进行下一步。
+		* async函数之间调用即可，Generator函数需要调用next方法才可执行。
+		* async await的语义化更好
+	* 说一下async中不同情况的不同结果：
+		* async函数中无await的情况：
+			* return一个字面量会得到一个PromiseStatus：resolved的Promise
+			* throw一个error会得到一个PromiseStatus: rejected的Promise
+		* async函数中有await的情况：
+			* async函数会返回一个PromiseStatus:pending的Promise
+			* Promise的resolve会使得await的代码节点获取相对于的结果，并继续向下执行。
+			* Promise的reject会使得await的代码节点自动抛出相对应的异常，终止向下执行。
+
