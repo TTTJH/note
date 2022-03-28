@@ -849,6 +849,7 @@
 		* 如果是尾调用，执行到函数B的时候，函数A已经都执行完毕了，可以直接删除函数A的执行记录，只保留B函数的调用记录，节省内存。
 		* 尾递归同理，即A函数最后一步调用A函数自身。
 	* 写出一个为对象部署Iterator遍历接口的过程：
+```
 let myIterable = {
     a: 1,
     b: 2,
@@ -872,6 +873,7 @@ it.next();
 for(const i of myIterable) {
   console.log(i);
 }
+```
 	* 说一下可枚举性(enumerable)是什么？
 		* 如果一个属性的enumerable是false,他将不会被for...in、Object.keys、JSON.stringify方法给枚举到。
 		* 可以通过Object.definedPorperty来定义enumerable
