@@ -1115,16 +1115,16 @@
 			* JSON.parse(JSON.stringify(obj));
 			* 自定义的递归函数
 			```javascript
-    function deepClone(target){
-        if(typeof target !== 'object'){
-            return target;
-        }
-        let obj = Array.isArray(target) ? [] : {};        
-        for(let item in target){
-            obj[item] = deepClone(target[item]);
-        }
-        return obj;
-    }
+    			function deepClone(target){
+       			if(typeof target !== 'object'){
+            		return target;
+        		}	
+        		let obj = Array.isArray(target) ? [] : {};        
+        		for(let item in target){
+            		obj[item] = deepClone(target[item]);
+        		}
+        		return obj;
+    			}
 			```
 	* 说一说显式转换和隐式转换有哪些方法：
 		* 显示转换：
