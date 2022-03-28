@@ -986,6 +986,7 @@
 	* 说一说HASH路由的原理，写出他的核心代码：
 		* 监听地址栏中的hash变化而驱动界面变化
 		* 大致代码如下：
+		```javascirpt
 		class Router{
     constructor(){
         this.routers = {}; // 用来存放路径名称以及回调函数   
@@ -1008,7 +1009,7 @@ let miniRouter = new Router();
 miniRouter.route("/test", () => console.log("切换到了test页面"));
 miniRouter.push("/test");
 		* history路由同理主要api换为history.pushState、history.replaceState、history.popState
-
+		```
 	* 怎么判断元素是否在可视区域？
 		* element.offsetTop - document.documentElement.scrollTop <= document.documentElement.clientTop
 		* element.getBoundingClient的top和left要大于等于0，element.getBoundingClienReact的bottom要大于等于document.docuemntElement.clientHeight并且element.getBoundingClientReact的right要大于等于document.documentElement.clientWidth
