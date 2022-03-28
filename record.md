@@ -1114,7 +1114,7 @@
 		* 常见深拷贝的方法：
 			* JSON.parse(JSON.stringify(obj));
 			* 自定义的递归函数
-			```
+			```javascript
     function deepClone(target){
         if(typeof target !== 'object'){
             return target;
