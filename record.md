@@ -988,28 +988,29 @@
 		* 大致代码如下：
 		```javascirpt
 		class Router{
-    constructor(){
-        this.routers = {}; // 用来存放路径名称以及回调函数   
-            window.addEventListener('load', (e) => console.log(e), false);  
-        window.addEventListener('hashchange', (e) => console.log(e), false);
-	}
-    // - 路由注册函数 -
-    route(path, callback){
-        this.routers[path] = callback;
-    }
-    // - 路由更新函数 -
-    push(path){
-        window.location.hash = path;
-        this.routers[path] && this.routers[path]();
-    }
-}
+    		constructor(){
+        	this.routers = {}; // 用来存放路径名称以及回调函数   
+            	window.addEventListener('load', (e) => console.log(e), false);  
+        	window.addEventListener('hashchange', (e) => console.log(e), false);
+		}
+    		// - 路由注册函数 -
+    		route(path, callback){
+        	this.routers[path] = callback;
+    		}
+    		// - 路由更新函数 -
+    		push(path){
+        	window.location.hash = path;
+        	this.routers[path] && this.routers[path]();
+    		}
+		}
 
-let miniRouter = new Router();
+		let miniRouter = new Router();
 
-miniRouter.route("/test", () => console.log("切换到了test页面"));
-miniRouter.push("/test");
-		* history路由同理主要api换为history.pushState、history.replaceState、history.popState
+		miniRouter.route("/test", () => console.log("切换到了test页面"));
+	miniRouter.push("/test");
 		```
+		* history路由同理主要api换为history.pushState、history.replaceState、history.popState
+		
 	* 怎么判断元素是否在可视区域？
 		* element.offsetTop - document.documentElement.scrollTop <= document.documentElement.clientTop
 		* element.getBoundingClient的top和left要大于等于0，element.getBoundingClienReact的bottom要大于等于document.docuemntElement.clientHeight并且element.getBoundingClientReact的right要大于等于document.documentElement.clientWidth
