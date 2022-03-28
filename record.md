@@ -418,25 +418,25 @@
 				* Set.prototype.forEach()使用回调函数遍历每个成员
 				
 * 前端八股文：
-		* 说一下BFC是什么？
+	* 说一下BFC是什么？
 			* BFC就是块级格式化上下文。
 			* BFC内部的box会在垂直方向上挨个放置。
 			* BFC内部垂直方向上的box的margin值会重叠。
 			* BFC区域不会和float box重叠。
-		* 如何触发BFC？
+	* 如何触发BFC？
 			* 根元素html
 			* float的值不为none
 			* overflow的值不为visible
 			* display设置为flex
 			* position设置为absolute / fixed
-		* 如何让一个元素水平居中？
+	* 如何让一个元素水平居中？
 			* text-align:center;
 			* margin:0 auto;
 			* 绝对定位+transform	
 			* flex布局：justify-content:center;
 			* display:inline-block;text-align:center; 
 			* line-height;
-		* 隐藏某个元素的方法：
+	* 隐藏某个元素的方法：
 			* opacity:0;不会改变页面布局，但是该元素仍然可触发事件。
 			* visibility:不改变页面布局，不会触发事件。
 			* display:改变页面布局，不会触发事件。
