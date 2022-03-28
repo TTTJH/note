@@ -729,4 +729,436 @@
 			* async函数会返回一个PromiseStatus:pending的Promise
 			* Promise的resolve会使得await的代码节点获取相对于的结果，并继续向下执行。
 			* Promise的reject会使得await的代码节点自动抛出相对应的异常，终止向下执行。
+	* 说一下快速生成1-100数组的方法：
+		* Array.from({length:100},(item,index)=>index+1);
+		* 参数1是伪数组属性，参数二是回调函数。
+	* 说一下undefined和ReferenceError：xxx is not defined的区别：
+		* undefined是声明后未赋值。
+		* ReferenceError是尝试引用一个未定义的变量或者函数时。
+	* 说一下Math常用的三个取整方法：
+		* Math.ceil():向上取整
+		* Math.round():四舍五入
+		* Math.floor()向下取整
+	* 解释一下如下代码：Array.prototype.slice.apply(arguments);	
+		* 使用Array原型对象上的slice方法将arguments转换为数组。
+	* 说一下mouseenter和mouseover的区别：
+		* mouseenter不会冒泡，mouseover会冒泡。
+	* 说一下几种常见的异步代码编写方式：
+		* 回调函数
+		* Promise对象
+		* async await
+	* 说一下clientWidth/clientHeight和offsetWidth/offsetHeight的区别：
+		* 前者是内容宽高，包括content+padding
+		* 后者包括content+padding+border+滚动条
+	* 说一下clientTop/clientLeft和offsetLeft/offsetRight的区别：
+		* 前者是border宽度
+		* 后者是距离其父元素的距离。
+	* 说一下怎样检测浏览器版本信息：
+		* window.navigator.userAgent
+	* 说一下什么是点击穿透现象：
+		* 就是移动端触发元素单机事件时候可能会触发其底下元素的单机事件，就像冒泡反过来一样。
+		* 解决方法是避免混用touch和click
+	* 怎样判断当前的运行环境是node还是浏览器
+		* 判断全局环境中的this是不是window，
+	* setTimeout为什么不能保证能够及时执行？
+		* 同步任务先执行，setTimeout真正执行回调函数之前有段等待线程的过程。
+	* 说一下几种常见错误：
+		* ReferenceError:引用一个未定义变量
+		* RangeError：超过数组最大长度。
+	* 说一下Promise.all和Promise.allSettled的区别：
+		* 前者的promise数组如果有reject的话整个结果就是reject的参数
+		* 后者的promise数组就算出现reject也会整个promise对应结果输出。
+	* 说一下JS怎样阻止冒泡和默认事件。
+		* 组织冒泡：event.stopPropagation()
+		* 组织默认事件：event.preventDefault()
+		* return false;
+	* 说一下浏览器为什么要设置同源策略：
+		* 保持A网站和B网站请求与响应的独立性。
+		* 不然用户访问了A网站，又去访问B网站，B网站是恶意网站的话，就可能拿着A网站cookie请求A网站后台导致A网站信息泄露。
+	* 说一下XML和JSON的区别：
+		* JSON是一种独立于编程语言的数据交换格式。
+		* XML是一种标记语言，XML应该多用于信息保存或者信息传输吧，我平常没用过。
+	* 说一下函数的length:
+		* 函数的length就是他第一个有默认值的参数之前的参数个数。
+	* 说一下for...of和for...in的区别
+		* for..of用于遍历配置了Iterator接口属性的数据结构
+		* for...in可用于遍历对象
+	* 说一下类数组转数组的方法：
+		* Array.prototype.slice.call(likeArray);
+		* Array.from(likeArray);	
+		* Array.prototype.splice.call(likeArray,0);
+	* 说一说js脚本延迟加载的方式有哪些？
+		* 添加defer属性
+		* 添加async属性
+		* 动态修改js的src
+		* script标签放在body下面
+	* 扩展运算符 和 Objcet.assign是深拷贝还是浅拷贝？
+		* 答：浅拷贝
+	* typeof NaN的结果是什么？
+		* number,且NaN不等于其自身。
+	* Object.is()和普通判等的区别：
+		* Object.is区分了些特殊情况+0不等于-0,NaN等于NaN
+	* 说一下什么是Promise值穿透：
+		* Promise的then和catch参数期望是函数，如果不是函数，该then返回promise的data.
+	* 如何计算当前html中有多少种标签？
+		* 4步
+			* 获取所有元素document.querySelectorAll(*")
+			* 伪数组转换：[...document.querySelectorAll("*")]
+			* 去重：new Set([...document.querySelectorAll("*")]).size
+	* 说一说你对window.requestAnimationFrame的理解：
+		* 该API使得动画的执行频率是根据设备刷新率/1000ms来动态计算的：
+			60HZ / 1000MS = 16.7ms的执行频率
+		* 并且页面隐藏的时候不会执行动画节省性能
+		* 而且自带节流
+	* 什么是虚拟DOM？
+		* 虚拟DOM是通过JS对象模拟出来的DOM什么是虚拟DOM？
+		* 虚拟DOM是通过JS对象模拟出来的DOM节点。
+	* 虚拟DOM一定更快嘛？
+		* 不一定，如果页面上只有一个按钮，点击+1，肯定还是直接操作DOM更快。
+	* 
+	* 虚拟DOM一定更快嘛？
+		* 不一定，如果页面上只有一个按钮，点击+1，肯定还是直接操作DOM更快。
+	* 谈谈你对浏览器中进程和线程的理解：
+		* 浏览器是多进程的，主要包括以下进程：
+			* Browser进程：浏览器的主进程，唯一，负责创建和销毁其他进程、网络资源的下载与管理、浏览器界面的展示、浏览器的前进与后退
+			* GPU进程：用于3D绘制
+			* 第三方插件进程：每种类型插件对应一个进程，使用该插件的时候才会创建。
+			* 浏览器内核(浏览器渲染进程)：
+				* 浏览器的内核又是多线程的：
+					* GUI渲染线程：负责渲染浏览器界面，当页面需要进行重绘或者重排的时候，该线程就会执行
+					* JS引擎线程：也称为js内核(例如v8引擎)，负责处理JS脚本程序，解析JS脚本，运行代码。
+					* 事件触发线程：用于控制浏览器的事件循环。
+					* 定时触发器线程：setTimeout和setInterval所在的线程。
+					* 异步HTTP请求线程：在XMLHttpRequest连接后通过浏览器新开一个线程请求，检测到状态变更的时候，就将回调函数放入事件队列中，由JS引擎执行。
+					* 注意GUI渲染线程和JS引擎是互斥的(界面渲染和JS代码解析执行互斥)
+				* JS的单线程：
+					* 所谓的单线程，是指JS引擎中负责解释和执行JS代码的线程唯一，同一时间上只能执行一件任务。
+	* 说一说你对Object.definedProperty的理解：
+		* Object.definedProperty可以在一个对象上定义新属性或者修改现有属性，返回该对象。
+		* 参数1是被操作对象，参数2是被操作对象的属性，参数3是配置项对象
+		* 配置项有如下：
+			* configurable:
+			* enumberable:	
+			* value:
+			* writable:	
+			* get:
+			* set:
+	* 说一说什么是尾调用？
+		* A函数的最后一步是调用B函数，这就是尾调用。
+		* 因为函数的调用会在内存中形成调用记录，如果在函数A中调用函数B，等到函数B执行完毕，A和B的调用记录才会都消失。
+		* 如果是尾调用，执行到函数B的时候，函数A已经都执行完毕了，可以直接删除函数A的执行记录，只保留B函数的调用记录，节省内存。
+		* 尾递归同理，即A函数最后一步调用A函数自身。
+	* 写出一个为对象部署Iterator遍历接口的过程：
+let myIterable = {
+    a: 1,
+    b: 2,
+    c: 3
+}
+myIterable[Symbol.iterator] = function() {
+  let self = this;
+  let arr = Object.keys(self);
+  let index = 0;
+  return {
+    next() {
+      return index < arr.length ? {value: self[arr[index++]], done: false} : {value: undefined, done: true};
+    }
+  }
+}
 
+var it = myIterable[Symbol.iterator]();
+
+it.next();
+
+for(const i of myIterable) {
+  console.log(i);
+}
+	* 说一下可枚举性(enumerable)是什么？
+		* 如果一个属性的enumerable是false,他将不会被for...in、Object.keys、JSON.stringify方法给枚举到。
+		* 可以通过Object.definedPorperty来定义enumerable
+		* 顺带一提，for...in会遍历对象继承自原型对象上的属性，Object.keys只会遍历自身的属性。
+	* 说一下forEach中可以使用await嘛？有哪些循环可以使用await
+		* forEach使用await无效，也不支持break;
+		* for循环和for...of可以
+	* 如何中断Promise？
+		```
+			function timerOuter(promise, time){
+				const promise2 = new Promise((resolve,reject) => {
+					setTimeout(()=>{
+						reject("timeout");
+					}, time);
+				})
+				return Promise.race([promise, promise2]);
+			}
+		```
+	* 说一下你对栈和堆的理解：
+		* 内存的角度上来说栈和堆
+			* 栈：栈由操作系统自动分配释放，用于存放函数的参数值、局部变量等，变量以先后定义顺序依次压入栈中，且栈的内存地址的生长方向由高到底，所以后定义的变量地址低于先定义的变量。栈中存储的数据的生命周期随着函数的执行完毕而释放。
+			* 堆：堆是需要手动释放的内存空间不一定相邻的，存放内容由程序员决定。
+		* 数据结构角度上来说栈和堆：
+	说一说实现微前端的方案：
+		* 栈即先进后出的数据结构。基本操作有入栈、出栈、获取栈顶
+			* 堆：一种树状结构，分为大根堆和小根堆，一般用数组来存储堆。
+	* 说一下Object.create是干嘛的？
+		* 传入一个对象，然后生成新对象，并且新对象的.__proto__指向参数对象。
+	* 说一下箭头函数能当作构造函数嘛？为什么？
+		* 不能，先简述一下new的过程。
+		* 但是箭头函数是没有自身的this的，其寻找其外部最近函数上下文当作自身的this且不可再改变this指向。
+	* 说一说什么是微前端？
+		* 微前端是一种类似微服务的架构，将多个小型前端应用聚合为一的应用。
+		* 各个小前端还可以独立开发，独立部署。
+	* 说一说微前端的价值：
+		* 整合新老项目。
+		* 单个项目进行拆分，单独模块维护。
+	* 说一说实现微前端的方案：
+		* iframe
+		* web component
+	* [] == ![]的结果是什么？
+		* []转换为0
+		* ![]首先转换为布尔值，![]为!true为false
+		* 0 == false
+		* true
+	* forEach中return有效果嘛？如何中断forEach?
+		* 不会，
+		* 可以使用every或者some代替forEach
+	* 解释一下什么是内存泄漏？是什么原因导致的？
+		* 程序中已动态分配的堆内存由于某种原因未释放或者无法释放
+		* 原因可能是因为闭包或者
+	* 说一下你对diff算法的理解：
+		* DIFF算法是一种比对算法。
+		* 通过对比新虚拟DOM和旧虚拟DOM，找出是哪个虚拟DOM进行了改动，找到这个有改动的虚拟DOM并且只更新该虚拟DOM对应的真实DOM，而不更新其他没有改动的节点，进而提高效率。
+		* DIFF算法在比较的时候只会进行同层级比较，所以应该是广度优先遍历。
+		* patch方法：
+			* 该方法会首先判断新旧虚拟DOM还是否是同一种类型的标签：
+				* 两者不是同一种标签了直接将整个节点替换未新虚拟节点。
+				* 两者是同一种标签的话继续向下执行
+			* 补充：判断条件如下:两者key值是否一样、标签名称是否一样、是否都为注释节点、是否都定义了data
+		* patchVnode方法：
+			* 先找到对应的真实dom对象
+			* 判断newVnode和oldVnode是否指向同一个对象，如果是，直接return
+			* 如果都有文本节点且不相等，将el的文本节点设置未newVnode的文本节点。
+			* 如果oldVnode有子节点而newVnode没有子节点，则删除el的子节点。
+			* 如果oldVnode没有子节点而newVnode有子节点，则将newVnode的子节点真实化后添加到el
+			* 如果oldVnode和newVnode都有子节点，则执行updateChildren函数比较子节点。
+			* 说明的时候可以画个草图：真实DOM，旧虚拟DOM，新虚拟DOM
+	* 解释一下为什么不建议用index作为元素的key
+		* 假设有个li列表，key为1，2，3，内容分别为A,B,C
+		* 在li列表头部添加个新li,现在列表key为1,2,3,4,内容分别为new,A,B,C
+		* 在添加后操作只后，新旧虚拟DOM的对比的patch阶段，他会把新虚拟dom中的key1,2,3仍当做是旧虚拟dom标签的文本发生了改变，新虚拟dom的key4当作是新添加的标签，所以key1,2,3,4整个都会进行真实dom的更新。
+		* 如果key是唯一的，在添加操作之后，新旧虚拟DOM的对比阶段就可以知道后三项无改动，第一项为新添加项，针对性更新真实DOM即可。
+	* 说一下虚拟DOM和操作真实DOM相比的优势：
+		* 当使用传统方法操作DOM的时候，会触发重排，浏览器会从构建Dom树开始重新执行一遍流程。
+		* 当你在一次需要更新10个节点的操作当中，浏览器收到第一个更新DOM请求后并不知道后续还有9个更新操作，最终会执行10次DOM更新操作。
+		* 同样是更新10个节点，虚拟DOM并不会直接进行更新，而是将这10次更新的内容保存为一个JS对象，最终将该JS对象一次性的渲染映射到真实DOM上。
+	* 说一说些网页性能优化方案：
+		* 对于html来说：
+			* 减少dom操作，减少重排次数。
+		* 对于css来说：		
+			* 减少选择器嵌套层数，
+			* CSS动画元素多设置postion:absolute/fixed减少重排
+		* 对于UI库：实现UI库按需加载
+		* 实现图片懒加载。
+		* 使用CDN
+		* 图片压缩
+		* 前端开启缓存
+	* 说一说常见的WEB攻击方式：
+		* XSS跨站脚本攻击：
+			* 存储型XSS：攻击者将恶意代码放在目标网站数据库中，用户打开该网站，服务端将恶意代码返回给了用户本地浏览器执行，攻击者就通过恶意代码被执行获取了用户的相关信息，进行冒充用户的行为。
+			* 前端防止XSS恶意代码的方法有：前端向数据库存储内容的时候对于大于号小于号需要进行转义。在使用innerHTML等API的时候注意用户自定义行为
+		* CSRF:
+			* 受害者登入了A网站，保存了cookie
+			* 受害者登入了B恶意网站，B恶意网站拿着上面那个cookie访问了A网站后台，冒充受害者进行操作。
+			* 浏览器的同源策略就是防止这种攻击
+	* 说一说什么是单点登入？
+		* 例如淘宝、天猫都是阿里旗下的，当用户登入淘宝之后，再打开天猫，系统自动帮用户登入了天猫，这就是单点登入。
+		* 同域名下的单点登入：
+			* cookie的domain属性设置为当前域名的主域名，path属性设置为根路径，那么共同主域名下的网站就可以实现单点登入，例如tieba.baidu.com和map.baidu.com
+		* 不同域名下的单点登入：
+			* 首先需要一个统一的认证中心，集中处理用户信息。
+			* 认证中心下的业务系统A不处理用户登入信息，再业务系统A发起请求后跳转至认证中心验证是否登入，如果未登入就跳转至认证中心登入页面，用户登入成功后跳转至业务系统A，此时业务系统登入成功后的认证信息就存储在认证中心中。
+			* 然后现在有业务系统B，系统B进行请求被重定向到了认证中心，认证中心检测到用户已经登入，则重定向回系统B，进行登入后的操作。
+	* 说一说SPA的优势吧：
+		* 内容改变不用重新加载整个页面。
+		* 打包后只有一个index.html
+	* 说一说实现SPA的原理：
+		* 监听地址栏中hash变化而驱动界面变化
+	* 说一说HASH路由的原理，写出他的核心代码：
+		* 监听地址栏中的hash变化而驱动界面变化
+		* 大致代码如下：
+		class Router{
+    constructor(){
+        this.routers = {}; // 用来存放路径名称以及回调函数   
+            window.addEventListener('load', (e) => console.log(e), false);  
+        window.addEventListener('hashchange', (e) => console.log(e), false);
+	}
+    // - 路由注册函数 -
+    route(path, callback){
+        this.routers[path] = callback;
+    }
+    // - 路由更新函数 -
+    push(path){
+        window.location.hash = path;
+        this.routers[path] && this.routers[path]();
+    }
+}
+
+let miniRouter = new Router();
+
+miniRouter.route("/test", () => console.log("切换到了test页面"));
+miniRouter.push("/test");
+		* history路由同理主要api换为history.pushState、history.replaceState、history.popState
+
+	* 怎么判断元素是否在可视区域？
+		* element.offsetTop - document.documentElement.scrollTop <= document.documentElement.clientTop
+		* element.getBoundingClient的top和left要大于等于0，element.getBoundingClienReact的bottom要大于等于document.docuemntElement.clientHeight并且element.getBoundingClientReact的right要大于等于document.documentElement.clientWidth
+	* 说一下cookie的Domain和Path属性：
+		* Domian指定了cookie可以送达的主机名称
+		* Path指定了一个URL路径，这个路径必须出现在要请求的资源路径中才会发送cookie首部。
+	* 说一下什么是内存泄漏？JS中有哪些内存泄漏的情况？
+		* 内存泄漏是指由于疏忽或者错误程序未能释放以及不再使用的内存。
+		* 常见的内存泄漏的情况：
+			* 意外的全局变量：
+				* 在函数内定义变量并没有使用var或者let关键字，这使得该变量不会随着函数的执行完毕而销毁，而是在全局作用域中一直存在。
+			* 闭包：
+				* 内部函数持续引用外部函数变量，使得外部函数作用域并不会进行回收。
+			* 取消时间监听：
+				* 在使用事件监听addEventListener的时候，在不监听的情况下使用removeEventListener取消对元素事件的监听。
+	* 说一说BOM中的常见对象：
+		* window:全局对象，所有全局变量都是其属性
+		* location:控制hash,控制url,控制刷新
+		* navigator:保留浏览器属性
+		* history:控制url前进后退
+	* 说一说DOM中的常见操作：
+		* 创建节点：createElement
+		* 创建文本节点：createTextNode
+		* 获取节点：querySelector
+		* 获取节点：parentElement
+		* 更新节点：innetHTML
+		* 更新节点：appendChild
+		* 更新节点：insertBefore
+		* 更新节点：setAttribute
+		* 更新节点：classList
+		* 删除节点：remvoeChild
+	* setTimeout中的回调函数回到主栈执行时是在全局执行上下文的环境中执行的，其this指向window
+	* 说一下ajax的原理：
+		* ajax的原理简单来说就是通过XMLHttpRequest来对服务器发出异步请求，从服务器获取数据，然后用js操作DOM更新页面。
+	* 写出XmlHttpRequqest的基本使用过程：
+	```
+		    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status >= 200 && xhr.status <= 300){
+                console.log(xhr.responseText);
+            }else{
+                console.log(xhr.status);
+            }
+        }
+    }
+    xhr.open("get","https://api.apiopen.top/getJoke?page=1&count=2&type=video");
+    xhr.send();
+	```
+	* 说一说你对执行栈的理解(也就是调用栈)
+		* 执行栈，也叫做调用栈，先进后出结构，用于存储代码在执行期间所创建的所有执行上下文。
+		* 当JS引擎开始执行第一行代码的时候，他会创建一个全局执行上下文压入执行栈中。
+		* 当引擎碰到一个函数的时候，他会创建一个函数执行上下文压入执行栈中。
+		* 引擎回执行位于执行栈栈顶的执行上下文，当该函数执行完毕后，对应的执行上下文就会被弹出，然后控制流程到达执行栈的下一个执行上下文。
+	* 说一说JS中的继承：
+		* 原型链继承：	
+			```
+			    function Father(){
+        this.name = "father";
+        
+    }
+
+    function Son(){
+        this.age = 12;
+    }
+
+    Son.prototype = new Father();
+
+    const father = new Father();
+    const son1 = new Son();
+    console.log(son1.name);
+		* 不过原型链继承的话是存在问题的，如果如果父构造函数有属性值是引用数据类型的话，子构造函数实例化A直接修改该属性的话，子构造函数实例化B对应的该属性也会被改动，因为两者共享着父构造函数的prototype对象
+			```
+		* 构造函数修改this继承：
+			```
+			    function Father(){
+        this.name = "father";
+        
+    }
+
+    function Son(){
+        Father.call(this);
+        this.age = 12;
+    }
+
+    const son1 = new Son();
+
+    console.log(son1.name);
+	```
+			* 这种写法的话呢，有一个弊端是指父构造函数的prototype指向的原型对象上的属性和方法，子构造函数实例化对象是拿不到的。
+		* 所以可以直接让以上两种方法组合来实现继承。
+	* 说一说浅拷贝和深拷贝：
+		* 什么是浅拷贝：
+			* 浅拷贝就是创建新的数据，这个数据有着原始数据属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用数据类型，拷贝的就是内存地址。
+		* 以下是浅拷贝的方法：
+			* Object.assing
+			* Array.prototype.slice()
+			* Array.prototype.concat()
+			* 扩展运算符也是浅拷贝
+		* 深拷贝新的数据和原始数据完全相同且是不同的内存地址，修改一个引入数据类型的属性，不会影响另一个对象的属性。
+		* 常见深拷贝的方法：
+			* JSON.parse(JSON.stringify(obj));
+			* 自定义的递归函数
+			```
+    function deepClone(target){
+        if(typeof target !== 'object'){
+            return target;
+        }
+        let obj = Array.isArray(target) ? [] : {};        
+        for(let item in target){
+            obj[item] = deepClone(target[item]);
+        }
+        return obj;
+    }
+			```
+	* 说一说显式转换和隐式转换有哪些方法：
+		* 显示转换：
+			* Number()
+			* String()
+			* Boolean()
+		* 隐式转换：
+			* ==
+			* !==
+			* 字符串+其他东西
+	* 说一说字符串常用方法：
+		* concat():
+		* slice():
+		* repeat()
+		* indexOf()
+		* chartAt()
+		* split()
+		* search()
+		* replace()			
+	* 说一说数组常用方法：
+		* push()
+		* unshift()
+		* splice()
+		* concat()
+		* pop()
+		* shift()
+		* slice()
+		* indexOf()
+		* includes()
+		* find()
+		* sort()
+		* reverse()
+		* join()
+		* some()
+		* every()
+		* forEach()
+		* fliter()
+		* map()
+
+	
+	 
