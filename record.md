@@ -1163,6 +1163,99 @@
 		* forEach()
 		* fliter()
 		* map()
+	* 说一下promise对象的三种状态：
+		* pending
+		* fulfilled
+		* rejected
+	* 介绍一下JS中的模块化：
+		* CommonJS
+			* module.exports = {foo, bar}
+			* const {foo, bar} = require("/xx")
+			* 特点：模块是同步加载的
+			* require返回的是被输出的值的拷贝，模块内部变化不影响该值。
+		* ES6：
+			* import用于导入
+			* export用于导出
+	* React这的类组件和函数组件有什么区别？
+		* 类组件使用setState禁止状态更新，而函数式组件使用useState来进行状态保存更新。
+		* 类组件和函数式组件的生命周期函数不一样
+		* 类组件通过new关键字调用，函数式组件直接调用。
+	* 什么是高阶组件？
+		* 高阶组件就是以一个组件作为参数
+	* ES6中的class中的constructor的super(props)是干嘛的
+		* 如果不调用super(props)的话，可能会出现this.props报错的bug
+	* 什么是受控组件和非受控组件？
+		* 非受控组件就是状态不受React控制的组件，就是input就是input，没有将它的value设置成当前组件的state啥的
+		* 受控组件就是该组件的状态受到React的控制，比如将input组件的value设置为state，然后用onChange响应其value变动进而更新state。
+	* 什么是JSX？
+		* JSX可以理解为JS的语法糖，有一些新特性：
+			* 大括号里面放表达式
+			* 空标签使用斜杠来写成闭合标签
+			* 一个变量就可以是个标签结构
+	* React.PureComponent和React.Component有什么区别？
+		* 两者的区别在于React.Component并未实现shouldComponentUpdate，而React.PureComponent中以浅层对比prop和state的方式实现了该函数。
+		* 如果赋予React组件相同的props和state，某些情况下使用PureComponent可以提高性能。
+	* 什么是React?
+		* React就是大家常说的前端框架。
+		* 采用虚拟DOM的方式映射出真实DOM
+		* 以函数或者class作为一个组件
+		* 每个组件维护着自身的state
+		* 用户的操作也就是组件state的更新和传递
+		* 搭配上路由、axios、脚手架等模块，快速的搭建SPA单页面应用
+	* 如何在React中应用样式
+		* import "./index.css"
+		* style={{borderRadius:"20px"}}
+	* 说一下React的生命周期函数
+		* render()渲染函数
+			* 检查state和props的更新return出React元素
+		* componentDidMount()
+			* componentDidMount会在组件挂载后(插入DOM树中)立即调用，通过网络请求获取数据，应该在这里调用。
+		* componentDidUpdate()
+			* 该函数会在更新后被立即调用。
+			* 首次渲染不会执行。
+			* 该函数的参数是旧的props
+				```javascript
+					componentDidUpdate(oldProps){
+						if(this.props.something != oldProps.something){
+							//...dosomething
+						}
+					}
+				```
+		* componentWillUnmount()
+			* 该函数会在组件卸载和销毁之前调用。
+		* shouldComponentUpdate()
+			* 当state和props发生变化时，该函数会在渲染执行之前被调用，默认返回值为true,返回false的时候，则不会调用render()和componentDidUpdate()
+	* 为什么不能直接使用this.state来改变数据？
+		* react中不能直接修改state,因为并不会重新触发render.
 
-	
-	 
+	* 说一说setState的工作流程：
+		* setState时通过一个队列机制来实现state更新,当执行setState的时候，会将需要更新的state合并后放入状态队列，而不会立刻更新this.state,从而实现高效的批量更新state.
+	* 为什么要给组件设置key？
+		* 减少不必要的重新渲染
+	* 什么是合成事件？
+		* React自己封装的一套事件机制，代理了原本的原生事件。
+	* setState是同步的还是异步的？
+		* setState在合成事件和狗子函数中是所谓的异步的，在原生事件和setTimeout中都是同步的。
+		* setState的异步不是说内部是由异步代码实现的，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形成了所谓的异步。可以通过setState第二个回调函数参数立即拿到更新后的结果。
+		* 并且如果在异步中堆同一个值进行多次setState，setState的批量更新策略会对其进行覆盖，取最后一次的执行，如果是同时setState多个不同的值，会在更新的时候进行合并批量更新。
+	* 为什么虚拟DOM可以提高性能？
+		* 一次性更新DOM
+		* 通过diff检查避免不必要的更新
+	* 说一说React中性能优化的方法？
+		* 使用PureComponent自动实现shouldComponentUpdate,避免不必要的渲染
+		* 看过一个写法是在写style的时候，可以不这样写style={{xxx:xxx}}},写成const myStyle={xxx:xxx} style={myStyle},这样在二次渲染时不会每次都开一个新的对象。
+		* 为元素设置key
+	* React hook带来了哪些便利？
+		* 通过hooks我们可以在函数定义的组件中具备类组件的特性
+		* class类需要关注this，而函数式组件不需要了。
+		* 提供由useState, useEffect
+	* 简述一下React的事件代理机制？
+		* React并不会把所有处理函数直接绑定在真实的节点上，而是把事件绑定到结构的最外层，使用一个统一的事件监听器，这个事件监听器维持了一个映射来保存所有组件内部的事件监听和处理函数。
+		* 当事件发生的时候，首先被这个统一的事件监听器处理，然后在映射里找到对应的事件处理函数调用
+	* 列举几个常见的hook:
+		* useState
+		* useEffect
+		* useRef
+		* useMemo
+		* useCallback
+	* 
